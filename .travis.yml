@@ -1,17 +1,1 @@
-language: generic
-
-dist: trusty
-
-group: edge
-
-sudo: true
-
-install:
-- git clone --depth=1 https://github.com/travis-ci/packer-templates.git
-- mkdir -p packer-templates/tmp
-- echo $GCE_ACCOUNT_FILE_B64_BZ2 | base64 -d | bunzip2 > packer-templates/tmp/gce.json
-
-script:
-- cd packer-templates &&
-  make &&
-  make ci-minimal
+language: lolnope
