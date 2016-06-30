@@ -1,0 +1,7 @@
+language: generic
+
+dist: trusty
+
+sudo: true
+
+script: echo not really bye
