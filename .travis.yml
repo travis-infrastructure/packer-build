@@ -2,6 +2,8 @@ language: generic
 
 dist: trusty
 
+group: edge
+
 sudo: true
 
 install:
