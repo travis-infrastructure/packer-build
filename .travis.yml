@@ -12,9 +12,9 @@ env:
 install:
 - curl -sSL -o packer.zip "https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip"
 - sudo unzip packer.zip -d /usr/local/packer
-- mkdir -p tmp
-- echo $GCE_ACCOUNT_FILE_B64_BZ2 | base64 -d | bunzip2 > tmp/gce.json
 - git clone --depth=1 https://github.com/travis-ci/packer-templates.git
+- mkdir -p packer-templates/tmp
+- echo $GCE_ACCOUNT_FILE_B64_BZ2 | base64 -d | bunzip2 > packer-templates/tmp/gce.json
 
 script:
 - cd packer-templates && packer build -only=googlecompute <(bin/yml2json < ci-minimal.yml)
