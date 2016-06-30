@@ -17,4 +17,6 @@ install:
 - echo $GCE_ACCOUNT_FILE_B64_BZ2 | base64 -d | bunzip2 > packer-templates/tmp/gce.json
 
 script:
-- cd packer-templates && packer build -only=googlecompute <(bin/yml2json < ci-minimal.yml)
+- cd packer-templates &&
+  make &&
+  packer build -only=googlecompute <(bin/yml2json < ci-minimal.yml)
