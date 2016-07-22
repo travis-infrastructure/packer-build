@@ -1,3 +1,20 @@
+---
 language: generic
-
-script: echo nope
+dist: trusty
+group: edge
+sudo: true
+before_install:
+- if [[ $BUILDER = docker ]] ; then sudo stop docker ; sudo cat /etc/default/docker
+  ; echo 'DOCKER_OPTS="$DOCKER_OPTS --storage-opt dm.basesize=20G"' | sudo tee -a
+  /etc/default/docker ; sudo cat /etc/default/docker ; sudo start docker ; sleep 5
+  ; sudo docker version ; fi
+install:
+- git clone --branch="" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf HEAD ; popd
+- "./packer-templates/bin/packer-build-install"
+script:
+- "./packer-templates/bin/packer-build-script ci-amethyst"
+env:
+  matrix:
+  - BUILDER=googlecompute
+  - BUILDER=docker
