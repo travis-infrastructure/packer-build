@@ -10,7 +10,8 @@ before_install:
   ; sudo docker version ; fi
 install:
 - git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf d2af1214c206 ; popd
+- pushd packer-templates && git checkout -qf 05516042558b677a96dec2d42c3d26203df8942a
+  ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-amethyst"
