@@ -10,7 +10,7 @@ before_install:
   ; sudo docker version ; fi
 install:
 - git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf ac140b144aa73dcbedc5274a46eb66c97740fad2
+- pushd packer-templates && git checkout -qf 42bf463884688de1542085bb7730869617ce7c01
   ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
