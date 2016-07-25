@@ -10,7 +10,7 @@ before_install:
   ; sudo docker version ; fi
 install:
 - git clone --branch="meat-spec-integration-tightening" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 42bf46388468 ; popd
+- pushd packer-templates && git checkout -qf ac140b144aa7 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-garnet"
