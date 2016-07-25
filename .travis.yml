@@ -9,8 +9,8 @@ before_install:
   /etc/default/docker ; sudo cat /etc/default/docker ; sudo start docker ; sleep 5
   ; sudo docker version ; fi
 install:
-- git clone --branch="" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf HEAD ; popd
+- git clone --branch="meat-spec-integration-tightening" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 53ee615c5ba0 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script internal-bastion"
