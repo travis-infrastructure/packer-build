@@ -9,8 +9,9 @@ before_install:
   /etc/default/docker ; sudo cat /etc/default/docker ; sudo start docker ; sleep 5
   ; sudo docker version ; fi
 install:
-- git clone --branch="meat-trusty-image-rewhack" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf e8f126185dc2 ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf e8f126185dc27361bd3996ce296c830fe230aba8
+  ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-garnet"
