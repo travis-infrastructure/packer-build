@@ -9,8 +9,9 @@ before_install:
   /etc/default/docker ; sudo cat /etc/default/docker ; sudo start docker ; sleep 5
   ; sudo docker version ; fi
 install:
-- git clone --branch="meat-serverspec-combination" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 65fd2e2c7dfa ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf cf2630ebcd4837ed182b69d561a3bd873d6890b9
+  ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-php"
