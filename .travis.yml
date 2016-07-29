@@ -9,9 +9,8 @@ before_install:
   /etc/default/docker ; sudo cat /etc/default/docker ; sudo start docker ; sleep 5
   ; sudo docker version ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 21bdc7ea9533e4879aea9c64273ca71ce1fbaf1b
-  ; popd
+- git clone --branch="meat-sphinx-switch" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 21bdc7ea9533 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-sugilite"
