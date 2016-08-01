@@ -9,8 +9,9 @@ before_install:
   /etc/default/docker ; sudo cat /etc/default/docker ; sudo start docker ; sleep 5
   ; sudo docker version ; fi
 install:
-- git clone --branch="meat-quay" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf c65c72e2c2d2 ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf c65c72e2c2d23dbb36700cb458bac50e07ce3cd8
+  ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-amethyst"
