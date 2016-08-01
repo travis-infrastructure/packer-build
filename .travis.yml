@@ -11,7 +11,8 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 18687d2cd798 ; popd
+- pushd packer-templates && git checkout -qf cf8d1b1e6f9c920223035f76573b6cc73ea237bc
+  ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-amethyst"
