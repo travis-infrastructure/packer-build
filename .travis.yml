@@ -11,8 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 1bfdd85449f63ec17724615806da06bd51d8fab8
-  ; popd
+- pushd packer-templates && git checkout -qf a1ed380cc9ce ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-sugilite"
