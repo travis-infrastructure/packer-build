@@ -12,7 +12,7 @@ before_install:
 - sudo service docker restart
 install:
 - git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 01a52e3bf70291210787df41f9db6d14fe4989f9
+- pushd packer-templates && git checkout -qf f766b3c101461d278db0e642ace69566dfe47da6
   ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
