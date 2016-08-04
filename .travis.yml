@@ -10,8 +10,9 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-job-board-post-processor" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 6a29bd92099f ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 6a29bd92099fcf5ff6addec91eb59f5123d2bd19
+  ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-amethyst"
