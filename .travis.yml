@@ -11,8 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf d6e8a562525050d814c541f43489a99861107167
-  ; popd
+- pushd packer-templates && git checkout -qf 1f5d9c051abf ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script tmate-edge"
