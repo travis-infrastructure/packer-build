@@ -10,9 +10,8 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 6ada034c6e2f089002b721e0b27bd8cc99222ac0
-  ; popd
+- git clone --branch="meat-precise-whackamole" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf ead0e230be15 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-php"
