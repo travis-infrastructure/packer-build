@@ -10,12 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 329bc91dd50f4241f8d6bccf8f080ef8ec9c8bd2
-  ; popd
+- git clone --branch="meat-trusty-bump" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 45a4ae377971 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-trusty-bump"
 - "./packer-templates/bin/packer-build-script ci-connie"
 env:
   matrix:
