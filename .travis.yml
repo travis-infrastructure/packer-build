@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-travis-cookbooks-edge-tweak" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 75c5e9269313 ; popd
+- git clone --branch="meat-feature-go-toolchain" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 5e459408d221 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-travis-cookbooks-edge-tweak"
+- export PACKER_TEMPLATES_BRANCH="meat-feature-go-toolchain"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
 env:
   matrix:
