@@ -1,5 +1,6 @@
 # ohai
 
-These are the machine image artifacts that are automated via travis builds specified in travis-ci/packer-templates. 
-
-To see the the ruby gem in progress go to [travis-packer-build](https://github.com/travis-ci/travis-packer-build)
+This is a downstream repository target with commits triggered via 
+[travis-ci/travis-packer-build](https://github.com/travis-ci/travis-packer-build) in
+Travis CI jobs run for
+[travis-ci/packer-templates](https://github.com/travis-ci/packer-templates).
