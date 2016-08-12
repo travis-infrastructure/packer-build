@@ -10,11 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-feature-go-toolchain" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 5e459408d221 ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 5e459408d22175960abcd1cfbb79a3c2b5a890d5
+  ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-feature-go-toolchain"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-connie"
 env:
   matrix:
