@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-disabled-ipv6-specs" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 17e0a50667a0 ; popd
+- git clone --branch="meat-go-version-tweaks" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 4dfd2f75fac1 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-disabled-ipv6-specs"
+- export PACKER_TEMPLATES_BRANCH="meat-go-version-tweaks"
 - "./packer-templates/bin/packer-build-script ci-connie"
 env:
   matrix:
