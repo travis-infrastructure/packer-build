@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-packer-templates-branch-tweak" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 51f737160cb4 ; popd
+- git clone --branch="meat-stack-terminology" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf f3cdc3948102 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-packer-templates-branch-tweak"
+- export PACKER_TEMPLATES_BRANCH="meat-stack-terminology"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
 env:
   matrix:
