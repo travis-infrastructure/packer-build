@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-php-default" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 8c78a3055772 ; popd
+- git clone --branch="meat-keyserver-switch" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf dda74f645339 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-php-default"
+- export PACKER_TEMPLATES_BRANCH="meat-keyserver-switch"
 - "./packer-templates/bin/packer-build-script ci-php"
 env:
   matrix:
