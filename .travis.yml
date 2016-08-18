@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="sol-disable-ipv6-in-gce-builds" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 801f2e9529bc ; popd
+- git clone --branch="meat-keyserver-switchy-deux" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 4b3f9ea9f219 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="sol-disable-ipv6-in-gce-builds"
+- export PACKER_TEMPLATES_BRANCH="meat-keyserver-switchy-deux"
 - "./packer-templates/bin/packer-build-script tmate-edge"
 env:
   matrix:
