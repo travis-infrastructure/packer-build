@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 708574011211 ; popd
+- git clone --branch="meat-gce-bastion" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 1a5b4a71d074 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-gce-bastion"
 - "./packer-templates/bin/packer-build-script tmate-edge"
 env:
   matrix:
