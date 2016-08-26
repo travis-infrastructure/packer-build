@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-postgresql-9.5-full-test" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 0642ddb8ea39 ; popd
+- git clone --branch="meat-gce-bastion" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 84a6cf3e9be0 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-postgresql-9.5-full-test"
+- export PACKER_TEMPLATES_BRANCH="meat-gce-bastion"
 - "./packer-templates/bin/packer-build-script ci-amethyst"
 env:
   matrix:
