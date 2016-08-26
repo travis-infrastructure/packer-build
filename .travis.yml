@@ -10,12 +10,13 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="sol-disable-ipv6-in-gce-builds" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 801f2e9529bc ; popd
+- git clone --branch="meat-gce-bastion" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 3656a22ccd0d ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="sol-disable-ipv6-in-gce-builds"
+- export PACKER_TEMPLATES_BRANCH="meat-gce-bastion"
 - "./packer-templates/bin/packer-build-script internal-bastion"
 env:
   matrix:
   - BUILDER=amazon-ebs
+  - BUILDER=googlecompute
