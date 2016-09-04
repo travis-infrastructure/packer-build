@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="meat-lil-worker-docker" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf af1648bcdd91 ; popd
+- pushd packer-templates && git checkout -qf c1f57e808c44 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="meat-lil-worker-docker"
