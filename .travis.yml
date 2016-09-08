@@ -10,11 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-shellcheck-bump" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 8b1f08b026fd ; popd
+- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git fetch origin +refs/pull/285/merge && git checkout
+  -qf FETCH_HEAD ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-shellcheck-bump"
+- export PACKER_TEMPLATES_BRANCH="+refs/pull/285/merge"
 - "./packer-templates/bin/packer-build-script internal-bastion"
 env:
   matrix:
