@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 79e2de3ecd25 ; popd
+- git clone --branch="meat-remove-aws-nat" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 44eedbf5d93f ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-remove-aws-nat"
 - "./packer-templates/bin/packer-build-script ci-connie"
 env:
   matrix:
