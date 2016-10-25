@@ -20,10 +20,9 @@ script:
 addons:
   artifacts:
     paths:
-    - ./tmp/image-metadata-$(cat "./tmp/%{template_name}/latest-image-name").tar.bz2
+    - ./tmp/image-metadata-$(cat "./tmp/ci-connie/latest-image-name").tar.bz2
     target_paths:
-    - travis-ci/packer-templates/%{template_name}/$(git describe --always --dirty
-      --tags)/$BUILDER
+    - travis-ci/packer-templates/ci-connie/$(git describe --always --dirty --tags)/$BUILDER
 env:
   matrix:
   - BUILDER=googlecompute
