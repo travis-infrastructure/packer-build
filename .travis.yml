@@ -10,18 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-node-attributes-export" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf cc1798045c0d ; popd
+- git clone --branch="meat-worker-unregister-netdevice-whackamole" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 45bf1210aa62 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-node-attributes-export"
+- export PACKER_TEMPLATES_BRANCH="meat-worker-unregister-netdevice-whackamole"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
-addons:
-  artifacts:
-    paths:
-    - "./packer-templates/tmp/image-metadata-$(cat ./packer-templates/tmp/ci-sugilite/latest-image-name).tar.bz2"
-    target_paths:
-    - travis-ci/packer-templates/ci-sugilite/$BUILDER
 env:
   matrix:
   - BUILDER=googlecompute
