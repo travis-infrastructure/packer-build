@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 278b7a7e72d8 ; popd
+- git clone --branch="meat-worker-unregister-netdevice-whackamole" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 45bf1210aa62 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-worker-unregister-netdevice-whackamole"
 - "./packer-templates/bin/packer-build-script tmate-edge"
 env:
   matrix:
