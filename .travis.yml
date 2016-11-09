@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 77fca3ccd481 ; popd
+- git clone --branch="meat-sugilite-pypy" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf e6208e3769ee ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-sugilite-pypy"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
 env:
   matrix:
