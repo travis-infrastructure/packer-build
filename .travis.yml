@@ -10,12 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/334/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="meat-test-pg96" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 923d80f25713 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/334/merge"
+- export PACKER_TEMPLATES_BRANCH="meat-test-pg96"
 - "./packer-templates/bin/packer-build-script ci-amethyst"
 env:
   matrix:
