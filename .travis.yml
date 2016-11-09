@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="meat-sugilite-pypy" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf e6208e3769ee ; popd
+- pushd packer-templates && git checkout -qf cdffc4aa0541 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="meat-sugilite-pypy"
