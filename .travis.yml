@@ -10,12 +10,18 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-amethyst-java" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 9f70282e2903 ; popd
+- git clone --branch="meat-node-attributes-export" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 3e372e45cce0 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-amethyst-java"
+- export PACKER_TEMPLATES_BRANCH="meat-node-attributes-export"
 - "./packer-templates/bin/packer-build-script internal-nat"
+addons:
+  artifacts:
+    paths:
+    - "./packer-templates/tmp/image-metadata-$(cat ./packer-templates/tmp/internal-nat/latest-image-name).tar.bz2"
+    target_paths:
+    - travis-ci/packer-templates/internal-nat/$BUILDER
 env:
   matrix:
   - BUILDER=googlecompute
