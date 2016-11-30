@@ -9,12 +9,13 @@ before_install:
   -o Dpkg::Options::="--force-confnew" -yqq docker-engine lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
+- export TRAVIS_COOKBOOKS_BRANCH=meat-mysql-5.6-shuffle
 install:
-- git clone --branch="meat-ruby-bumps" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 0f5210b6c9be ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-ruby-bumps"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-amethyst"
 addons:
   artifacts:
