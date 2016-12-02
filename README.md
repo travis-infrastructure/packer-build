@@ -1,4 +1,4 @@
-# ohai
+# ohai [![Build Status](https://travis-ci.org/travis-infrastructure/packer-build.svg?branch=master)](https://travis-ci.org/travis-infrastructure/packer-build/branches)
 
 This is a downstream repository target with commits triggered via 
 [travis-ci/travis-packer-build](https://github.com/travis-ci/travis-packer-build) in
