@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-test-couchdb" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf d08060d38839 ; popd
+- git clone --branch="meat-test-cassandra" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 7758328d8e35 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-test-couchdb"
+- export PACKER_TEMPLATES_BRANCH="meat-test-cassandra"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
 addons:
   artifacts:
