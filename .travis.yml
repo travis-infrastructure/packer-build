@@ -10,12 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/360/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="meat-system-info-json" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 648ef2191a0a ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/360/merge"
+- export PACKER_TEMPLATES_BRANCH="meat-system-info-json"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
 addons:
   artifacts:
