@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-bump-kernel-v4.8.12" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 18eb7c9ca573 ; popd
+- git clone --branch="meat-gce-updates" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 23694b824a71 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-bump-kernel-v4.8.12"
+- export PACKER_TEMPLATES_BRANCH="meat-gce-updates"
 - "./packer-templates/bin/packer-build-script ci-connie"
 addons:
   artifacts:
