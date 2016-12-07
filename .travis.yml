@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-system-info-json" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf c22699318d16 ; popd
+- git clone --branch="meat-rm-chromium" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 266088c138ce ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-system-info-json"
+- export PACKER_TEMPLATES_BRANCH="meat-rm-chromium"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
