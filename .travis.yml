@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-dpkg-info-dump" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 06d2c7991115 ; popd
+- git clone --branch="meat-test-cassandra" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 932e678e0ad3 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-dpkg-info-dump"
+- export PACKER_TEMPLATES_BRANCH="meat-test-cassandra"
 - "./packer-templates/bin/packer-build-script ci-connie"
 addons:
   artifacts:
