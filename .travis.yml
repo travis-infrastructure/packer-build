@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-use-poise-profiler" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf f7bbd488d265 ; popd
+- git clone --branch="meat-oracle-jdk-cleanup" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf cb6f90b067d7 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-use-poise-profiler"
+- export PACKER_TEMPLATES_BRANCH="meat-oracle-jdk-cleanup"
 - "./packer-templates/bin/packer-build-script internal-bastion"
 addons:
   artifacts:
