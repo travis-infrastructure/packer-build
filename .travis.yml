@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="meat-use-poise-profiler" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf f7bbd488d265 ; popd
+- pushd packer-templates && git checkout -qf 73b884966227 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="meat-use-poise-profiler"
