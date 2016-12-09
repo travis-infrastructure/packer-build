@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 66cd32eab47d ; popd
+- git clone --branch="meat-oracle-jdk-cleanup" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf cb6f90b067d7 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-oracle-jdk-cleanup"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
 addons:
   artifacts:
