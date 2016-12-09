@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf b40722734cfe ; popd
+- git clone --branch="meat-use-poise-profiler" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf f7bbd488d265 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-use-poise-profiler"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
