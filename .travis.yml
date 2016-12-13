@@ -9,12 +9,13 @@ before_install:
   -o Dpkg::Options::="--force-confnew" -yqq docker-engine lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
+- export TRAVIS_COOKBOOKS_BRANCH=meat-trusty-haskell
 install:
-- git clone --branch="meat-dpkg-baseline" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 7f5aef09a65f ; popd
+- git clone --branch="meat-trusty-haskell" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 058bfed4d80a ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-dpkg-baseline"
+- export PACKER_TEMPLATES_BRANCH="meat-trusty-haskell"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
 addons:
   artifacts:
