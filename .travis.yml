@@ -9,13 +9,12 @@ before_install:
   -o Dpkg::Options::="--force-confnew" -yqq docker-engine lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
-- export TRAVIS_COOKBOOKS_BRANCH=meat-rvm-servers
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 404501279edf ; popd
+- git clone --branch="meat-shfmt-specs" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf eba8e4a1ad6a ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-shfmt-specs"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
