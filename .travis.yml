@@ -17,10 +17,12 @@ install:
 script:
 - export PACKER_TEMPLATES_BRANCH="+refs/pull/389/merge"
 - "./packer-templates/bin/packer-build-script ci-amethyst"
+- touch ./packer-templates/tmp/image-metadata-empty.tar.bz2
 addons:
   artifacts:
     paths:
-    - "./packer-templates/tmp/image-metadata-$(cat ./packer-templates/tmp/ci-amethyst/latest-image-name).tar.bz2"
+    - "./packer-templates/tmp/image-metadata-$(cat ./packer-templates/tmp/ci-amethyst/latest-image-name
+      || echo empty).tar.bz2"
     target_paths:
     - travis-ci/packer-templates/ci-amethyst/$BUILDER
 env:
