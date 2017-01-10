@@ -10,17 +10,18 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/396/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 582aa78f15e5 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/396/merge"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-connie"
+- touch ./packer-templates/tmp/image-metadata-empty.tar.bz2
 addons:
   artifacts:
     paths:
-    - "./packer-templates/tmp/image-metadata-$(cat ./packer-templates/tmp/ci-connie/latest-image-name).tar.bz2"
+    - "./packer-templates/tmp/image-metadata-$(cat ./packer-templates/tmp/ci-connie/latest-image-name
+      || echo empty).tar.bz2"
     target_paths:
     - travis-ci/packer-templates/ci-connie/$BUILDER
 env:
