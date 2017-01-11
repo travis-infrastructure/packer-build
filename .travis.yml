@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-minimize-touchup" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 37445ec77128 ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf d90993772052 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-minimize-touchup"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-connie"
 - touch ./packer-templates/tmp/image-metadata-empty.tar.bz2
 addons:
