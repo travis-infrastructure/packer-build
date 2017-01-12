@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="meat-dpkg-baseline" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 754ea77acaf1 ; popd
+- pushd packer-templates && git checkout -qf 4f0f6277bd1b ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="meat-dpkg-baseline"
