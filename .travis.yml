@@ -10,11 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-integrate-shfmt" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 3c0277550b15 ; popd
+- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git fetch origin +refs/pull/400/merge && git checkout
+  -qf FETCH_HEAD ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-integrate-shfmt"
+- export PACKER_TEMPLATES_BRANCH="+refs/pull/400/merge"
 - "./packer-templates/bin/packer-build-script ci-amethyst"
 - touch ./packer-templates/tmp/image-metadata-empty.tar.bz2
 addons:
