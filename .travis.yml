@@ -10,18 +10,20 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-integrate-shfmt" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf ea07db289c55 ; popd
+- git clone --branch="meat-image-metadata-cleanup" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf e6a5d02eab3c ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-integrate-shfmt"
+- export PACKER_TEMPLATES_BRANCH="meat-image-metadata-cleanup"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
-- touch ./packer-templates/tmp/image-metadata-empty.tar.bz2
+- export PACKER_BUILD_IMAGE_NAME=$(cat ./packer-templates/tmp/ci-sugilite/latest-image-name
+  || echo empty)
+- touch ./packer-templates/tmp/image-metadata-$PACKER_BUILD_IMAGE_NAME.tar.bz2
+- cp -v ./packer-templates/tmp/image-metadata-$PACKER_BUILD_IMAGE_NAME.tar.bz2 ./image-metadata-$PACKER_BUILD_IMAGE_NAME.tar.bz2
 addons:
   artifacts:
     paths:
-    - "./packer-templates/tmp/image-metadata-$(cat ./packer-templates/tmp/ci-sugilite/latest-image-name
-      || echo empty).tar.bz2"
+    - image-metadata-$PACKER_BUILD_IMAGE_NAME.tar.bz2
     target_paths:
     - travis-ci/packer-templates/ci-sugilite/$BUILDER
 env:
