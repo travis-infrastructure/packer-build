@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-drop-python2.6" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf f0953e91029b ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf f8159b71a5d4 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-drop-python2.6"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-sugilite"
 - touch ./packer-templates/tmp/image-metadata-empty.tar.bz2
 addons:
