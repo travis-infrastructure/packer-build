@@ -11,19 +11,15 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="meat-image-metadata-cleanup" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 0d2c7a6a9209 ; popd
+- pushd packer-templates && git checkout -qf 7c5432580fe2 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="meat-image-metadata-cleanup"
 - "./packer-templates/bin/packer-build-script ci-connie"
-- export PACKER_BUILD_IMAGE_NAME=$(cat ./packer-templates/tmp/ci-connie/latest-image-name
-  || echo empty)
-- touch ./packer-templates/tmp/image-metadata-$PACKER_BUILD_IMAGE_NAME.tar.bz2
-- cp -v ./packer-templates/tmp/image-metadata-$PACKER_BUILD_IMAGE_NAME.tar.bz2 ./image-metadata-$PACKER_BUILD_IMAGE_NAME.tar.bz2
 addons:
   artifacts:
     paths:
-    - image-metadata-$PACKER_BUILD_IMAGE_NAME.tar.bz2
+    - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
     - travis-ci/packer-templates/ci-connie/$BUILDER
 env:
