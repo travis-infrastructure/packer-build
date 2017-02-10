@@ -11,12 +11,11 @@ before_install:
   docker restart ; fi
 - export TRAVIS_COOKBOOKS_BRANCH=meat-neo4j
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/417/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="meat-neo4j" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 91358f0bf3ab ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/417/merge"
+- export PACKER_TEMPLATES_BRANCH="meat-neo4j"
 - "./packer-templates/bin/packer-build-script ci-amethyst"
 addons:
   artifacts:
