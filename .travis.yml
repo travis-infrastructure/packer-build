@@ -11,12 +11,11 @@ before_install:
   docker restart ; fi
 - export TRAVIS_COOKBOOKS_BRANCH=cha-md5sum-fix
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/423/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="cha-packer-upgrade" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 736f82180e01 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/423/merge"
+- export PACKER_TEMPLATES_BRANCH="cha-packer-upgrade"
 - "./packer-templates/bin/packer-build-script ci-connie"
 addons:
   artifacts:
