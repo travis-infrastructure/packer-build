@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 02f441da68ef ; popd
+- git clone --branch="cha-dev-trusty-Q2" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 3448ffea79cd ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="cha-dev-trusty-Q2"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
