@@ -12,7 +12,7 @@ before_install:
 - export TRAVIS_COOKBOOKS_BRANCH=meat-community-cookbook-updates
 install:
 - git clone --branch="meat-cookiecat" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 6e78512702e6 ; popd
+- pushd packer-templates && git checkout -qf 7bd55be0675d ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="meat-cookiecat"
