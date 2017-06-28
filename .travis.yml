@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 35e58d29d8ac ; popd
+- git clone --branch="meat-prole-template" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 31b5c6b772aa ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-prole-template"
 - "./packer-templates/bin/packer-build-script ci-cookiecat"
 addons:
   artifacts:
