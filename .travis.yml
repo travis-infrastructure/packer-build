@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-ant-optional" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 660f6c2daf79 ; popd
+- git clone --branch="meat-stevonnie" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf be25acb456eb ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-ant-optional"
+- export PACKER_TEMPLATES_BRANCH="meat-stevonnie"
 - "./packer-templates/bin/packer-build-script ci-connie"
 addons:
   artifacts:
