@@ -11,12 +11,11 @@ before_install:
   docker restart ; fi
 - export TRAVIS_COOKBOOKS_BRANCH=bv-add-jvm-mem-params
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/487/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="bv-add-jvm-mem-parameters" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 13c9906dfdd5 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/487/merge"
+- export PACKER_TEMPLATES_BRANCH="bv-add-jvm-mem-parameters"
 - "./packer-templates/bin/packer-build-script ci-cookiecat"
 addons:
   artifacts:
