@@ -11,11 +11,11 @@ before_install:
   docker restart ; fi
 - export TRAVIS_COOKBOOKS_BRANCH=cha-mercurial-install-fix
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf @ ; popd
+- git clone --branch="cha-mercurial-fix" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 5af79b180cbb ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="cha-mercurial-fix"
 - "./packer-templates/bin/packer-build-script ci-connie"
 addons:
   artifacts:
