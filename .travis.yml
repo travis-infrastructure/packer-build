@@ -9,13 +9,13 @@ before_install:
   -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
-- export TRAVIS_COOKBOOKS_BRANCH=bv-add-jvm-mem-params
 install:
-- git clone --branch="bv-add-jvm-mem-parameters" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 13c9906dfdd5 ; popd
+- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git fetch origin +refs/pull/487/merge && git checkout
+  -qf FETCH_HEAD ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-add-jvm-mem-parameters"
+- export PACKER_TEMPLATES_BRANCH="+refs/pull/487/merge"
 - "./packer-templates/bin/packer-build-script ci-cookiecat"
 addons:
   artifacts:
