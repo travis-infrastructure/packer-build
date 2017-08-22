@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="bv-add-mysql-perf-schema-test" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 6d77d1572717 ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 9c6875413a53 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-add-mysql-perf-schema-test"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
