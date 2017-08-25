@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="cha-edmorley-python-update" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf dc6943afd177 ; popd
+- git clone --branch="cha-edmorley-update-nodejs" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 27aa1d216c59 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="cha-edmorley-python-update"
+- export PACKER_TEMPLATES_BRANCH="cha-edmorley-update-nodejs"
 - "./packer-templates/bin/packer-build-script ci-stevonnie"
 addons:
   artifacts:
