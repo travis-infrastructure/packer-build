@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-precise-xenial-jiggery" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf a5dfadf8832d ; popd
+- git clone --branch="meat-tfw-docker-fix" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 3d5a5011715d ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-precise-xenial-jiggery"
+- export PACKER_TEMPLATES_BRANCH="meat-tfw-docker-fix"
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
