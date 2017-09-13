@@ -12,7 +12,7 @@ before_install:
 - export TRAVIS_COOKBOOKS_BRANCH=ibmjava-travisci
 install:
 - git clone --branch="bv-test-ibmjava" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 8efe0c2fa18a ; popd
+- pushd packer-templates && git checkout -qf bb6ff220118e ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="bv-test-ibmjava"
