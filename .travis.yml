@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-stevonnie-openstack" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 4cf3698c0fde ; popd
+- git clone --branch="bonanza-windows-support" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 3ec30660cbba ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-stevonnie-openstack"
+- export PACKER_TEMPLATES_BRANCH="bonanza-windows-support"
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
