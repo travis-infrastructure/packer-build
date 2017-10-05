@@ -27,4 +27,3 @@ env:
   matrix:
   - BUILDER=googlecompute
   - BUILDER=amazon-ebs
-  - BUILDER=amazon-ebsvolume
