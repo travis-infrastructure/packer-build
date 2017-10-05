@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="aj-ebs" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 9b3a2c4d4ecc ; popd
+- pushd packer-templates && git checkout -qf b89f0aff0206 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="aj-ebs"
