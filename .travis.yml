@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="bv-remove-ibm-java" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf d4cf86c1ed57 ; popd
+- git clone --branch="aj-tfw-16.04" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 8138ed4b613e ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-remove-ibm-java"
+- export PACKER_TEMPLATES_BRANCH="aj-tfw-16.04"
 - "./packer-templates/bin/packer-build-script tfw"
 addons:
   artifacts:
