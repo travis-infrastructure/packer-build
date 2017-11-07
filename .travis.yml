@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="aj-tfw-16.04" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 8138ed4b613e ; popd
+- pushd packer-templates && git checkout -qf ffdc6b5baddd ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="aj-tfw-16.04"
