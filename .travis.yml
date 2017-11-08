@@ -11,12 +11,11 @@ before_install:
   docker restart ; fi
 - export TRAVIS_COOKBOOKS_BRANCH=emorley-yarn-latest
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/542/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="edmorley-test-cookbooks-yarn-latest" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 3200d335c4ea ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/542/merge"
+- export PACKER_TEMPLATES_BRANCH="edmorley-test-cookbooks-yarn-latest"
 - "./packer-templates/bin/packer-build-script ci-stevonnie"
 addons:
   artifacts:
