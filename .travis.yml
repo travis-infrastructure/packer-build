@@ -9,12 +9,13 @@ before_install:
   -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
+- export TRAVIS_COOKBOOKS_BRANCH=emorley-yarn-latest
 install:
-- git clone --branch="bv-build-image-fixes" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 27d9fa9d575c ; popd
+- git clone --branch="edmorley-test-cookbooks-yarn-latest" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 5e88fd855c21 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-build-image-fixes"
+- export PACKER_TEMPLATES_BRANCH="edmorley-test-cookbooks-yarn-latest"
 - "./packer-templates/bin/packer-build-script ci-connie"
 addons:
   artifacts:
