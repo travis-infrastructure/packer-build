@@ -4,18 +4,18 @@ dist: trusty
 group: edge
 sudo: true
 before_install:
+- export TRAVIS_COOKBOOKS_BRANCH="bv-build-image-fixes"
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
   -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
-- export TRAVIS_COOKBOOKS_BRANCH=emorley-yarn-latest
 install:
-- git clone --branch="edmorley-test-cookbooks-yarn-latest" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 3200d335c4ea ; popd
+- git clone --branch="bv-build-image-fixes" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="edmorley-test-cookbooks-yarn-latest"
+- export PACKER_TEMPLATES_BRANCH="bv-build-image-fixes"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
