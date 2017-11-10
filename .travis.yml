@@ -12,7 +12,7 @@ before_install:
 - export TRAVIS_COOKBOOKS_BRANCH=edmorley-bump-versions
 install:
 - git clone --branch="edmorley-bump-versions" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 511bc25c04ff ; popd
+- pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="edmorley-bump-versions"
