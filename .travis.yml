@@ -9,13 +9,13 @@ before_install:
   -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
-- export TRAVIS_COOKBOOKS_BRANCH=edmorley-bump-versions
 install:
-- git clone --branch="edmorley-bump-versions" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf @ ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 6aa37a497ba488e9f8ebd1bd16b38e7fc7d70908
+  ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="edmorley-bump-versions"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-connie"
 addons:
   artifacts:
