@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="bv-remove-pinned-chef-version" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf b97ec7add5d3 ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 2db8eced5f6a ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-remove-pinned-chef-version"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
