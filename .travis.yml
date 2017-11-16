@@ -15,15 +15,9 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="edmorley-xenial-docker" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="edmorley-packer-error-testcase" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="edmorley-xenial-docker"
+- export PACKER_TEMPLATES_BRANCH="edmorley-packer-error-testcase"
 - "./packer-templates/bin/packer-build-script ci-opal"
-addons:
-  artifacts:
-    paths:
-    - image-metadata-$(cat .packer-build-image-name).tar.bz2
-    target_paths:
-    - travis-ci/packer-templates/ci-opal/$BUILDER
