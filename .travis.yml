@@ -5,7 +5,7 @@ group: edge
 sudo: true
 env:
   matrix:
-  - BUILDER=docker
+  - BUILDER=openstack
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
@@ -13,11 +13,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="edmorley-xenial-docker" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="edmorley-openstack-debug" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="edmorley-xenial-docker"
+- export PACKER_TEMPLATES_BRANCH="edmorley-openstack-debug"
 - "./packer-templates/bin/packer-build-script ci-stevonnie"
 addons:
   artifacts:
