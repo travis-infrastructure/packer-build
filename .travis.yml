@@ -4,6 +4,8 @@ dist: trusty
 group: edge
 sudo: true
 env:
+  global:
+  - PACKER_LOG=1
   matrix:
   - BUILDER=openstack
 before_install:
