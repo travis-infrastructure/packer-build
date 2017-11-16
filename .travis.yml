@@ -3,6 +3,9 @@ language: minimal
 dist: trusty
 group: edge
 sudo: true
+env:
+  matrix:
+  - BUILDER=docker
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
@@ -11,8 +14,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="edmorley-xenial-docker" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 4fc0dfc0fc33ecdcc806e2fca74be9e935ff24f8
-  ; popd
+- pushd packer-templates && git checkout -qf 608888915ac1 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="edmorley-xenial-docker"
@@ -23,8 +25,3 @@ addons:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
     - travis-ci/packer-templates/ci-stevonnie/$BUILDER
-env:
-  matrix:
-  - BUILDER=googlecompute
-  - BUILDER=docker
-  - BUILDER=openstack
