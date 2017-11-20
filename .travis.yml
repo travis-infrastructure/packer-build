@@ -10,11 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="bv-add-php-7.1" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 1fb3ec7b2c8c ; popd
+- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git fetch origin +refs/pull/552/merge && git checkout
+  -qf FETCH_HEAD ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-add-php-7.1"
+- export PACKER_TEMPLATES_BRANCH="+refs/pull/552/merge"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
