@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="bv-add-php-7.1" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf @ ; popd
+- pushd packer-templates && git checkout -qf 1fb3ec7b2c8c ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="bv-add-php-7.1"
