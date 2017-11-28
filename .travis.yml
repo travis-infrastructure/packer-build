@@ -3,11 +3,6 @@ language: minimal
 dist: trusty
 group: edge
 sudo: true
-env:
-  global:
-  - PACKER_LOG=1
-  matrix:
-  - BUILDER=docker
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
@@ -15,9 +10,20 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="edmorley-packer-error-testcase" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf @ ; popd
+- git clone --branch="meat-sardonyx-docker-ppc64" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 0572e670d536 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="edmorley-packer-error-testcase"
+- export PACKER_TEMPLATES_BRANCH="meat-sardonyx-docker-ppc64"
 - "./packer-templates/bin/packer-build-script ci-opal"
+addons:
+  artifacts:
+    paths:
+    - image-metadata-$(cat .packer-build-image-name).tar.bz2
+    target_paths:
+    - travis-ci/packer-templates/ci-opal/$BUILDER
+env:
+  matrix:
+  - BUILDER=googlecompute
+  - BUILDER=docker
+  - BUILDER=openstack
