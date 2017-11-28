@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="jvd-add-arch-i386" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf @ ; popd
+- git clone --branch="edmorley-green-gce-opal-sardonyx" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 914dab6c39aa ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="jvd-add-arch-i386"
+- export PACKER_TEMPLATES_BRANCH="edmorley-green-gce-opal-sardonyx"
 - "./packer-templates/bin/packer-build-script ci-connie"
 addons:
   artifacts:
