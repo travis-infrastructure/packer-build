@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="edmorley-xenial-part2" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 672ad30d11b1 ; popd
+- pushd packer-templates && git checkout -qf c1c3c3e912ab ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="edmorley-xenial-part2"
