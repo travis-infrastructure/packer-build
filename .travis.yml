@@ -9,13 +9,13 @@ before_install:
   -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
+- export TRAVIS_COOKBOOKS_BRANCH=edmorley-pin-rabbitmq-server
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/553/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="edmorley-xenial-all-green" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/553/merge"
+- export PACKER_TEMPLATES_BRANCH="edmorley-xenial-all-green"
 - "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
@@ -27,4 +27,3 @@ env:
   matrix:
   - BUILDER=googlecompute
   - BUILDER=docker
-  - BUILDER=openstack
