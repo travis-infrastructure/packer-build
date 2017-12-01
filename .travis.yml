@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="edmorley-xenial-all-green" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf f554eac6fcbd ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="edmorley-xenial-all-green"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
@@ -26,3 +26,4 @@ env:
   matrix:
   - BUILDER=googlecompute
   - BUILDER=docker
+  - BUILDER=openstack
