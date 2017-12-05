@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="bv-increase-amethyst-size" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf f8d7455a40c4 ; popd
+- git clone --branch="edmorley-xenial-greener" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 6eef35766af9 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-increase-amethyst-size"
+- export PACKER_TEMPLATES_BRANCH="edmorley-xenial-greener"
 - "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
@@ -26,4 +26,3 @@ env:
   matrix:
   - BUILDER=googlecompute
   - BUILDER=docker
-  - BUILDER=openstack
