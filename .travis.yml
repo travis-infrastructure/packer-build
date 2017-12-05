@@ -10,11 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="edmorley-xenial-greener" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 6eef35766af9 ; popd
+- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git fetch origin +refs/pull/562/merge && git checkout
+  -qf FETCH_HEAD ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="edmorley-xenial-greener"
+- export PACKER_TEMPLATES_BRANCH="+refs/pull/562/merge"
 - "./packer-templates/bin/packer-build-script ci-stevonnie"
 addons:
   artifacts:
