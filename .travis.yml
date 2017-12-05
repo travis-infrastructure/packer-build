@@ -10,11 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="bv-increase-amethyst-size" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf f8d7455a40c4 ; popd
+- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git fetch origin +refs/pull/560/merge && git checkout
+  -qf FETCH_HEAD ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-increase-amethyst-size"
+- export PACKER_TEMPLATES_BRANCH="+refs/pull/560/merge"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
