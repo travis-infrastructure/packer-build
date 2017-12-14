@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-sardonyx-docker-ppc64" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 3f2fb39a3031 ; popd
+- git clone --branch="edmorley-xenial-greener" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf cb81ab3df1d8 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-sardonyx-docker-ppc64"
+- export PACKER_TEMPLATES_BRANCH="edmorley-xenial-greener"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
