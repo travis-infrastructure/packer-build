@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="bv-update-image-tags" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 2a08f279b4ca ; popd
+- git clone --branch="meat-stacks-short-clean" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 0413ececb1b0 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-update-image-tags"
+- export PACKER_TEMPLATES_BRANCH="meat-stacks-short-clean"
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
