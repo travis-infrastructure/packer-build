@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-set-hostname-compat" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 8ecdeaf7297e ; popd
+- git clone --branch="emma-remove-sshguard-xenial" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 9f0e5a7f2aa2 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-set-hostname-compat"
+- export PACKER_TEMPLATES_BRANCH="emma-remove-sshguard-xenial"
 - "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
