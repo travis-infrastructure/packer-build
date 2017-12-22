@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="emma-remove-sshguard-xenial" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 9f0e5a7f2aa2 ; popd
+- git clone --branch="bv-remove-ssh-guard" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="emma-remove-sshguard-xenial"
+- export PACKER_TEMPLATES_BRANCH="bv-remove-ssh-guard"
 - "./packer-templates/bin/packer-build-script ci-stevonnie"
 addons:
   artifacts:
