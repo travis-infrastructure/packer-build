@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="bv-patch-tfw-trusty-kernel" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 2e6962f13efe ; popd
+- git clone --branch="meat-patch-tfw-kernel-chefferized" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf f66a7169ce28 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="bv-patch-tfw-trusty-kernel"
+- export PACKER_TEMPLATES_BRANCH="meat-patch-tfw-kernel-chefferized"
 - "./packer-templates/bin/packer-build-script ci-amethyst"
 addons:
   artifacts:
