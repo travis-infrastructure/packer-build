@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-ignore-more-top-level-json" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 4763b38c4611 ; popd
+- git clone --branch="meat-email-notifications" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf a9c2327b5c48 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-ignore-more-top-level-json"
+- export PACKER_TEMPLATES_BRANCH="meat-email-notifications"
 - "./packer-templates/bin/packer-build-script tmate-edge"
 addons:
   artifacts:
@@ -22,6 +22,8 @@ addons:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
     - travis-ci/packer-templates/tmate-edge/$BUILDER
+notifications:
+  email: false
 env:
   matrix:
   - BUILDER=amazon-ebs
