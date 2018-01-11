@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 3be27820028b ; popd
+- git clone --branch="meat-deps-ruby-update" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf f62684a987ff ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="meat-deps-ruby-update"
 - "./packer-templates/bin/packer-build-script ci-amethyst"
 addons:
   artifacts:
