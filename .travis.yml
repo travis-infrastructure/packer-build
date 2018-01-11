@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-deps-ruby-update" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf f62684a987ff ; popd
+- git clone --branch="meat-email-notifications" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 26a7af3c3bde ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-deps-ruby-update"
+- export PACKER_TEMPLATES_BRANCH="meat-email-notifications"
 - "./packer-templates/bin/packer-build-script ci-garnet"
 addons:
   artifacts:
@@ -22,6 +22,8 @@ addons:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
     - travis-ci/packer-templates/ci-garnet/$BUILDER
+notifications:
+  email: false
 env:
   matrix:
   - BUILDER=googlecompute
