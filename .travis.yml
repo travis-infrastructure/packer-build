@@ -10,12 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/585/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="trusty-stable" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf f485a7f73e23 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/585/merge"
+- export PACKER_TEMPLATES_BRANCH="trusty-stable"
 - "./packer-templates/bin/packer-build-script ci-cookiecat"
 addons:
   artifacts:
