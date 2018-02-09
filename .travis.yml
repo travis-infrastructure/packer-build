@@ -22,6 +22,8 @@ addons:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
     - travis-ci/packer-templates/tfw/$BUILDER
+notifications:
+  email: false
 env:
   matrix:
   - BUILDER=googlecompute
