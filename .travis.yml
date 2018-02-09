@@ -9,13 +9,12 @@ before_install:
   -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
-- export TRAVIS_COOKBOOKS_BRANCH=meat-jdk-switcher-via-bash
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="aj-linux-headers" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="aj-linux-headers"
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
