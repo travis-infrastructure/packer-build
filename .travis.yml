@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="trusty-stable" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf f485a7f73e23 ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="trusty-stable"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script internal-bastion"
 addons:
   artifacts:
@@ -22,6 +22,8 @@ addons:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
     - travis-ci/packer-templates/internal-bastion/$BUILDER
+notifications:
+  email: false
 env:
   matrix:
   - BUILDER=amazon-ebs
