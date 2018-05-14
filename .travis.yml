@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="jvd-jvd-pin-chef-xenial" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="jvd-pin-chef-xenial" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="jvd-jvd-pin-chef-xenial"
+- export PACKER_TEMPLATES_BRANCH="jvd-pin-chef-xenial"
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
