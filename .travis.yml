@@ -10,12 +10,12 @@ before_install:
   docker restart ; fi
 - export TRAVIS_COOKBOOKS_BRANCH=jvd-docker
 install:
-- git clone --branch="%{branch}" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf %{commit_range_last} ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="%{branch}"
-- "./packer-templates/bin/packer-build-script %{template_name}"
+- export PACKER_TEMPLATES_BRANCH="master"
+- "./packer-templates/bin/packer-build-script ci-stevonnie"
 addons:
   artifacts:
     paths:
