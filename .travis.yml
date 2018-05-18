@@ -17,7 +17,8 @@ script:
 - export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-opal"
 after_failure:
-- sudo tail -n 5000 /var/log/{syslog,dmesg,kern.log} /var/log/upstart/{docker,container-detect}.log
+#- sudo tail -n 5000 /var/log/{syslog,dmesg,kern.log} /var/log/upstart/{docker,container-detect}.log
+- docker run --rm --entrypoint /bin/cat $(docker images | awk 'NR==2{print $3;exit}') /var/log/syslog
 addons:
   artifacts:
     paths:
