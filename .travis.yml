@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-tfw-bionic" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 6846145e39f4 ; popd
+- git clone --branch="jvd-os-tag" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf cb1b2766b89e ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-tfw-bionic"
+- export PACKER_TEMPLATES_BRANCH="jvd-os-tag"
 - "./packer-templates/bin/packer-build-script tfw"
 addons:
   artifacts:
