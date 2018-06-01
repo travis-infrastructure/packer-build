@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf ed3a0c95d6c4 ; popd
+- git clone --branch="jvd-postgres" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 535b851201a4 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="jvd-postgres"
 - "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
