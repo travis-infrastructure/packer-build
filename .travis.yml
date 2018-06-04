@@ -15,6 +15,7 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="jvd-add-psql"
+- export TRAVIS_COOKBOOKS_BRANCH=jvd-postgres
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
