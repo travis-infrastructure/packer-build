@@ -15,6 +15,7 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="master"
+- export TRAVIS_COOKBOOKS_BRANCH=jvd-services
 - "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
