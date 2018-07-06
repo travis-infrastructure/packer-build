@@ -10,19 +10,23 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/505/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/505/merge"
-- "./packer-templates/bin/packer-build-script ci-sugilite"
+- export PACKER_TEMPLATES_BRANCH="master"
+- export TRAVIS_COOKBOOKS_BRANCH=jvd-services
+- "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/ci-sugilite/$BUILDER
+    - travis-ci/packer-templates/ci-opal/$BUILDER
+notifications:
+  email: false
 env:
   matrix:
   - BUILDER=googlecompute
+  - BUILDER=docker
+
