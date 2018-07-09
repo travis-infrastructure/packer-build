@@ -1,6 +1,6 @@
 ---
 language: minimal
-dist: xenial
+dist: trusty
 group: edge
 sudo: true
 before_install:
