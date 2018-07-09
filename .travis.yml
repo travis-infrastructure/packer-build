@@ -4,7 +4,8 @@ dist: xenial
 group: edge
 sudo: true
 before_install:
-- if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
+- if [[ "${BUILDER}" = "docker" ]] ; then awk '$3=="xfs"{printf "mount -o remount,pqnoenforce %s\n", $2}' 
+  /proc/mounts | sudo sh -; sudo apt-get update -yqq ; sudo apt-get
   purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
   -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
