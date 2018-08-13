@@ -10,12 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/639/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="mjm-remove-mac" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 6000df0b20af ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/639/merge"
+- export PACKER_TEMPLATES_BRANCH="mjm-remove-mac"
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
