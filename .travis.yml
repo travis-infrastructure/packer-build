@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="meat-bundle-update" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf f90b7e49ac7f ; popd
+- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf e602d2271de9 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="meat-bundle-update"
+- export PACKER_TEMPLATES_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
