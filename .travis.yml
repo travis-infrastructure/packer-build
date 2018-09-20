@@ -10,21 +10,23 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf e602d2271de9 ; popd
+- git clone --branch="jvd-jdk" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="jvd-jdk"
+- export TRAVIS_COOKBOOKS_BRANCH=jvd-jdk
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/ci-sardonyx/$BUILDER
+    - travis-ci/packer-templates/ci-opal/$BUILDER
 notifications:
   email: false
 env:
   matrix:
   - BUILDER=googlecompute
   - BUILDER=docker
+
