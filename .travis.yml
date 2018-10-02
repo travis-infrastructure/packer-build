@@ -10,11 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="jvd-remove-unused-code" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf b6e44439ce3f ; popd
+- git clone --branch="jvd-jdk" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="jvd-remove-unused-code"
+- export PACKER_TEMPLATES_BRANCH="jvd-jdk"
+- export TRAVIS_COOKBOOKS_BRANCH=jvd-jdk
 - "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
