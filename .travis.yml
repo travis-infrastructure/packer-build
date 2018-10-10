@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="ha-local-builds" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 12d0efeb55ee ; popd
+- pushd packer-templates && git checkout -qf 340196d18304 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="ha-local-builds"
