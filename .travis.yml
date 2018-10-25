@@ -11,17 +11,18 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="jvd-github-token" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf c96f8c1f48a0 ; popd
+- pushd packer-templates && git checkout -qf @; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="jvd-github-token"
+- export TRAVIS_COOKBOOKS_BRANCH=jvd-xenial-improvements
 - "./packer-templates/bin/packer-build-script ci-stevonnie"
 addons:
   artifacts:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/ci-stevonnie/$BUILDER
+    - travis-ci/packer-templates/ci-opal/$BUILDER
 notifications:
   email: false
 env:
