@@ -1,4 +1,3 @@
----
 language: minimal
 dist: trusty
 group: edge
@@ -11,10 +10,11 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="jvd-2018-11-05" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 82dcf04bba30 ; popd
+- pushd packer-templates && git checkout -qf @; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="jvd-2018-11-05"
+- export TRAVIS_COOKBOOKS_BRANCH=jvd-2018-11-05
 - "./packer-templates/bin/packer-build-script ci-opal"
 addons:
   artifacts:
@@ -27,4 +27,3 @@ notifications:
 env:
   matrix:
   - BUILDER=googlecompute
-  - BUILDER=docker
