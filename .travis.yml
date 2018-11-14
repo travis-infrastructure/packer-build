@@ -10,11 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="jvd-generic" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf 63887d36e63f ; popd
+- git clone --branch="ha-local-builds" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 342804f2dd4a ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="jvd-generic"
+- export PACKER_TEMPLATES_BRANCH="ha-local-builds"
 - "./packer-templates/bin/packer-build-script ci-stevonnie"
 addons:
   artifacts:
