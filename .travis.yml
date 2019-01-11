@@ -10,12 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="jvd-hhvm-config" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="jvd-apt-speed" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="jvd-hhvm-config"
-- export TRAVIS_COOKBOOKS_BRANCH="jvd-hhvm-env"
+- export PACKER_TEMPLATES_BRANCH="jvd-apt-speed"
+- export TRAVIS_COOKBOOKS_BRANCH="jvd-apt-upgrade"
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
