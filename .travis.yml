@@ -11,7 +11,7 @@ before_install:
   docker restart ; fi
 install:
 - git clone --branch="jvd-bionic" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf ba213c0834c7 ; popd
+- pushd packer-templates && git checkout -qf 34ad154b26c9 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="jvd-bionic"
