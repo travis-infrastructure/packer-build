@@ -10,13 +10,11 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- export PACKER_TEMPLATES_BRANCH=master
-- export TRAVIS_COOKBOOKS_BRANCH=jvd-php-alias
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf @ ; popd
+- git clone --branch="jvd-bionic" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf 2313a9e51024 ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
+- export PACKER_TEMPLATES_BRANCH="jvd-bionic"
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
 addons:
   artifacts:
@@ -29,3 +27,5 @@ notifications:
 env:
   matrix:
   - BUILDER=googlecompute
+  - BUILDER=docker
+  - BUILDER=openstack
