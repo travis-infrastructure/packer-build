@@ -28,4 +28,3 @@ notifications:
 env:
   matrix:
   - BUILDER=googlecompute
-  - BUILDER=docker
