@@ -15,7 +15,7 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="zp-bionic"
-- "./packer-templates/bin/packer-build-script git-bionic-support ci-peridot"
+- "./packer-templates/bin/packer-build-script ci-peridot"
 addons:
   artifacts:
     paths:
