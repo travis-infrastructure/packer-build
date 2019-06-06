@@ -10,18 +10,18 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="zp-bionic" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="ci-ubuntu-1804" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="zp-bionic"
-- "./packer-templates/bin/packer-build-script git-bionic-support ci-peridot"
+- export PACKER_TEMPLATES_BRANCH="ci-ubuntu-1804"
+- "./packer-templates/bin/packer-build-script ci-ubuntu-1804-minimal"
 addons:
   artifacts:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/ci-peridot/$BUILDER
+    - travis-ci/packer-templates/ci-ubuntu-1804-minimal/$BUILDER
 notifications:
   email: false
 env:
