@@ -1,5 +1,30 @@
-language: generic
-script: echo nope
+---
+language: minimal
+dist: trusty
+group: edge
+sudo: true
+before_install:
+- if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
+  purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
+  -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
+  --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
+  docker restart ; fi
+install:
+- git clone --branch="ci-ubuntu-1804" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
+- "./packer-templates/bin/packer-build-install"
+script:
+- export PACKER_TEMPLATES_BRANCH="ci-ubuntu-1804"
+- "./packer-templates/bin/packer-build-script ci-ubuntu-1804"
+addons:
+  artifacts:
+    paths:
+    - image-metadata-$(cat .packer-build-image-name).tar.bz2
+    target_paths:
+    - travis-ci/packer-templates/ci-ubuntu-1804/$BUILDER
 notifications:
-  slack:
-    secure: LsOPJG154/XKoRK3RVJErdFGjJfuF/N7De4cGZKl8Exl7bARGDMGnC1ASBkL9h05OyoChNMRoSJIwEuAFkVrydgJu3f2giOUbBD6YHPTykwGRbRRGH4wrjNJ3TXqbm8UC6iXPM8NgbxGhTCDcK9++niwIgu31YtZfexr1hFu9c+k3CU3Uz7w1+l0ZM1gr6YRIWpGEi30o9Vy7bDohCgogBulw/lZJY++HnKbllRzfO+zaG0QhPV5rU0o7IGluIDuk0htiSh1td6QjuP1PjDzvyD9pShfzOKikxt8hBaO5XYl6ZtUATU9PkOsGDuYH62vpnLBnWZYHE+C40YmrHqrBs7iRRjGR0rgGLb3s5jKVS/MJa+bQoieRUqRVwhI4NGV12e/2hQ+jUOWDqNIVJ7/iECo4QgHNh0MYCS2DPHhHQ1FW95Icnad4MAZxiPpIvF7Wic5jdLUSgsQ92wgge6oR+4Iiq/MuMO1FzhOxABp6hADJF5ITEq0ljdyoZ6Bf4SnLFgEtcz2/AWbN5G56NTNFvjWSmPty1kE7AR+AVtmTrMPh8jiyCnjGvIAvshCEcfYfrEbyJrlL0PgtLcItL/frqmYrIosCWSq4FPosA3O5MGgProgDjUSevpo06pD5jKukL5McHEdHcoLuLl+xyU0JLki1Cv+/1bIJvQqZ6ffGUY=
+  email: false
+env:
+  matrix:
+  - BUILDER=googlecompute
+  - BUILDER=docker
