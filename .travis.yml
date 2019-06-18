@@ -13,9 +13,8 @@ before_install:
   containerd.io lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS --storage-driver devicemapper"'
   | sudo tee -a /etc/default/docker ; sudo service docker restart ; fi
 install:
-- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/false/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- git clone --branch="ci-ubuntu-1804" https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="+refs/pull/false/merge"
