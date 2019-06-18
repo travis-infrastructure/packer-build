@@ -1,7 +1,7 @@
 ---
 language: minimal
-dist: trusty
-group: edge
+dist: bionic
+group: dev
 sudo: true
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
@@ -10,11 +10,12 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch="ci-ubuntu-1804" "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf @ ; popd
+- git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git fetch origin +refs/pull/false/merge && git checkout
+  -qf FETCH_HEAD ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="ci-ubuntu-1804"
+- export PACKER_TEMPLATES_BRANCH="+refs/pull/false/merge"
 - "./packer-templates/bin/packer-build-script ci-ubuntu-1804"
 addons:
   artifacts:
