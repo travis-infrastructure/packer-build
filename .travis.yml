@@ -1,22 +1,20 @@
 ---
 language: minimal
-dist: bionic
-group: dev
+dist: trusty
+group: edge
 sudo: true
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
-  install apt-transport-https gnupg-agent software-properties-common ; curl -fsSL
-  https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - ; sudo apt-get
-  purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo add-apt-repository
-  "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  ; sudo apt-get install -o Dpkg::Options::="--force-confnew" -yqq docker-ce docker-ce-cli
-  containerd.io lvm2 xfsprogs ; sudo service docker restart ; fi
+  purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
+  -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
+  --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
+  docker restart ; fi
 install:
-- git clone --branch="ci-ubuntu-1804" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="bionic-merge-testing" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/false/merge"
+- export PACKER_TEMPLATES_BRANCH="bionic-merge-testing"
 - "./packer-templates/bin/packer-build-script ci-ubuntu-1804"
 addons:
   artifacts:
