@@ -14,7 +14,7 @@ install:
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="freebsd"
+- export PACKER_TEMPLATES_BRANCH="dam-freebsd-ruby"
 - export TRAVIS_COOKBOOKS_BRANCH="dam-freebsd-ruby"
 - "./packer-templates/bin/packer-build-script ci-freebsd-12"
 addons:
