@@ -10,7 +10,7 @@ before_install:
   --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
   docker restart ; fi
 install:
-- git clone --branch=freebsd "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch=dam-freebsd-ruby "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
