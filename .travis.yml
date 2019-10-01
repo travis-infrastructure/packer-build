@@ -11,18 +11,17 @@ before_install:
   docker restart ; fi
 install:
 - git clone --depth=50 "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git fetch origin +refs/pull/648/merge && git checkout
-  -qf FETCH_HEAD ; popd
+- pushd packer-templates  && git checkout -qf FETCH_HEAD ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="+refs/pull/648/merge"
-- "./packer-templates/bin/packer-build-script ci-onion"
+- export PACKER_TEMPLATES_BRANCH="master"
+- "./packer-templates/bin/packer-build-script ci-windows-1804"
 addons:
   artifacts:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/ci-onion/$BUILDER
+    - travis-ci/packer-templates/ci-windows-1804/$BUILDER
 notifications:
   email: false
 env:
