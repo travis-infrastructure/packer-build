@@ -4,7 +4,7 @@ dist: xenial
 
 install:
 - git clone --branch=lxd-templates "https://github.com/travis-ci/packer-templates.git"
-- pushd packer-templates && git checkout -qf @ ; popd
+- pushd packer-templates
 
 env:
   global:
