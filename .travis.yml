@@ -1,30 +1,19 @@
----
+
 language: minimal
-dist: trusty
-group: edge
-sudo: true
-before_install:
-- if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
-  purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
-  -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
-  --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
-  docker restart ; fi
+dist: bionic
+
 install:
-- git clone --branch=master "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch=lxd-templates "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
-- "./packer-templates/bin/packer-build-install"
-script:
-- export PACKER_TEMPLATES_BRANCH="master"
-- export TRAVIS_COOKBOOKS_BRANCH="dam-freebsd-ruby"
-- "./packer-templates/bin/packer-build-script ci-freebsd-12"
-addons:
-  artifacts:
-    paths:
-    - image-metadata-$(cat .packer-build-image-name).tar.bz2
-    target_paths:
-    - travis-ci/packer-templates/ci-freebsd-12/$BUILDER
-notifications:
-  email: false
+
 env:
-  matrix:
-  - BUILDER=googlecompute
+  global:
+    - BUILDER="lxd"
+    - TEMPLATE="ubuntu-16.04-minimal"
+  jobs:
+    - ARCH="ppc64le"
+    - ARCH="arm64"
+
+script:
+- make $TEMPLATE
+- "./packer-templates/bin/packer-build-script ci-freebsd-12"
