@@ -16,4 +16,3 @@ env:
 
 script:
 - make $TEMPLATE
-- "./packer-templates/bin/packer-build-script ci-freebsd-12"
