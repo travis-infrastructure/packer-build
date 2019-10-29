@@ -10,9 +10,11 @@ env:
   global:
     - BUILDER="lxd"
     - TEMPLATE="ubuntu-16.04-minimal"
+    - PACKER_BUILD_NAME=""
   jobs:
     - ARCH="ppc64le"; BUILDER_HOTS=$BUILDER_ppc64le
     - ARCH="arm64"; BUILDER_HOTS=$BUILDER_arm64
 
 script:
+- export PACKER_BUILD_NAME=$(uuidgen)
 - make $TEMPLATE
