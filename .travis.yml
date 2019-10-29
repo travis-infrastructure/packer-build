@@ -9,16 +9,11 @@ install:
 env:
   global:
     - BUILDER="lxd"
-    - TEMPLATE="ubuntu-16.04-minimal"
   jobs:
-    - stage: "Minimal"
-      env:
-      - TEMPLATE="ubuntu-16.04-minimal" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
-      - TEMPLATE="ubuntu-18.04-minimal" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
-    - stage: "Ruby"
-      env:
-      - TEMPLATE="ubuntu-16.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
-      - TEMPLATE="ubuntu-18.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
+    - TEMPLATE="ubuntu-16.04-minimal" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
+    - TEMPLATE="ubuntu-18.04-minimal" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
+    - TEMPLATE="ubuntu-16.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
+    - TEMPLATE="ubuntu-18.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
 
 before_script:
 - |
