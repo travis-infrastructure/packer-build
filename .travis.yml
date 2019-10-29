@@ -15,8 +15,8 @@ env:
     - ARCH="arm64"; BUILDER_HOST=$BUILDER_arm64; KEY=$KEY_arm64
 
 before_script:
-- echo $KEY_arm64 > .ssh/id_rsa
+- eval $BUILDER_KEY
 
 script:
 - export PACKER_BUILD_NAME=$(uuidgen)
-- make $TEMPLATE
+  #- make $TEMPLATE
