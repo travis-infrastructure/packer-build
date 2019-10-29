@@ -16,11 +16,11 @@ env:
 
 before_script:
 - |
-  tee ~/.ssh/config <<EOF
+  echo '
   Host *
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
-  EOF
+  '>> ~/.ssh/config
 - eval $BUILDER_KEY
 - eval $BUILDER_KEY1
 
