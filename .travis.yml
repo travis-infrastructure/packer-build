@@ -9,11 +9,13 @@ install:
 env:
   global:
     - BUILDER="lxd"
+    - AWS_ACCESS_KEY_ID=$LXC_AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY=$LXC_AWS_SECRET_ACCESS_KEY
   jobs:
     - TEMPLATE="ubuntu-16.04-minimal" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
     - TEMPLATE="ubuntu-18.04-minimal" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
-    - TEMPLATE="ubuntu-16.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
-    - TEMPLATE="ubuntu-18.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
+    # - TEMPLATE="ubuntu-16.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
+    # - TEMPLATE="ubuntu-18.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
 
 before_script:
 - |
@@ -21,6 +23,7 @@ before_script:
   Host *
     StrictHostKeyChecking no
     UserKnownHostsFile=/dev/null
+    LogLevel ERROR
   '>> ~/.ssh/config
 - eval $BUILDER_KEY
 - eval $BUILDER_KEY1
