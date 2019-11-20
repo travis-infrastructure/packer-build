@@ -1,8 +1,6 @@
 ---
 language: minimal
-dist: trusty
-group: edge
-sudo: true
+dist: xenial
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
@@ -15,7 +13,7 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - export PACKER_TEMPLATES_BRANCH="master"
-- export TRAVIS_COOKBOOKS_BRANCH="dam-freebsd-ruby"
+- export TRAVIS_COOKBOOKS_BRANCH="master"
 - "./packer-templates/bin/packer-build-script ci-freebsd-12"
 addons:
   artifacts:
