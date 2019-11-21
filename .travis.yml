@@ -17,7 +17,6 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-freebsd-12"
-- sleep 2h
 addons:
   artifacts:
     paths:
