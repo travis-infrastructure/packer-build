@@ -1,5 +1,29 @@
-language: generic
-script: echo nope
+---
+language: minimal
+dist: trusty
+group: edge
+sudo: true
+env:
+  global:
+  - PACKER_TEMPLATES_BRANCH="gce-lxd-host"
+  - TRAVIS_COOKBOOKS_BRANCH="master"
+
+install:
+- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
+- pushd packer-templates && git checkout -qf @ ; popd
+- "./packer-templates/bin/packer-build-install"
+
+script:
+- "./packer-templates/bin/packer-build-script gce-lxd-host"
+
+addons:
+  artifacts:
+    paths:
+    - image-metadata-$(cat .packer-build-image-name).tar.bz2
+    target_paths:
+    - travis-ci/packer-templates/gce-lxd-host/$BUILDER
 notifications:
-  slack:
-    secure: LsOPJG154/XKoRK3RVJErdFGjJfuF/N7De4cGZKl8Exl7bARGDMGnC1ASBkL9h05OyoChNMRoSJIwEuAFkVrydgJu3f2giOUbBD6YHPTykwGRbRRGH4wrjNJ3TXqbm8UC6iXPM8NgbxGhTCDcK9++niwIgu31YtZfexr1hFu9c+k3CU3Uz7w1+l0ZM1gr6YRIWpGEi30o9Vy7bDohCgogBulw/lZJY++HnKbllRzfO+zaG0QhPV5rU0o7IGluIDuk0htiSh1td6QjuP1PjDzvyD9pShfzOKikxt8hBaO5XYl6ZtUATU9PkOsGDuYH62vpnLBnWZYHE+C40YmrHqrBs7iRRjGR0rgGLb3s5jKVS/MJa+bQoieRUqRVwhI4NGV12e/2hQ+jUOWDqNIVJ7/iECo4QgHNh0MYCS2DPHhHQ1FW95Icnad4MAZxiPpIvF7Wic5jdLUSgsQ92wgge6oR+4Iiq/MuMO1FzhOxABp6hADJF5ITEq0ljdyoZ6Bf4SnLFgEtcz2/AWbN5G56NTNFvjWSmPty1kE7AR+AVtmTrMPh8jiyCnjGvIAvshCEcfYfrEbyJrlL0PgtLcItL/frqmYrIosCWSq4FPosA3O5MGgProgDjUSevpo06pD5jKukL5McHEdHcoLuLl+xyU0JLki1Cv+/1bIJvQqZ6ffGUY=
+  email: false
+env:
+  matrix:
+  - BUILDER=googlecompute
