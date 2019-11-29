@@ -5,7 +5,7 @@ group: edge
 sudo: true
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="gce-lxd-host"
+  - PACKER_TEMPLATES_BRANCH="lxd-host-gce"
   - TRAVIS_COOKBOOKS_BRANCH="master"
 
 install:
@@ -14,14 +14,14 @@ install:
 - "./packer-templates/bin/packer-build-install"
 
 script:
-- "./packer-templates/bin/packer-build-script gce-lxd-host"
+- "./packer-templates/bin/packer-build-script lxd-host-gce"
 
 addons:
   artifacts:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/gce-lxd-host/$BUILDER
+    - travis-ci/packer-templates/lxd-host-gce/$BUILDER
 notifications:
   email: false
 env:
