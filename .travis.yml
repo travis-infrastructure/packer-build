@@ -1,30 +1,52 @@
----
-language: minimal
-dist: trusty
-group: edge
-sudo: true
+
+dist: bionic
 before_install:
-- if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
-  purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
-  -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
-  --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
-  docker restart ; fi
+- apt update -qq
+
+## Install snapd
+- apt install snapd --yes
+- export PATH=/snap/bin/:$PATH
+- echo "export PATH=/snap/bin/:${PATH}" >> /root/.bashrc
+
+## Install and setup ZFS
+- apt install zfsutils-linux --yes
+- mkdir -p /mnt/data
+
+## Install and setup LXD
+- apt remove --purge --yes lxd lxd-client liblxc1 lxcfs
+- snap install lxd
+- snap set lxd shiftfs.enable=true
+
+- lxc storage create instances zfs volume.zfs.use_refquota=true
+- zfs set sync=disabled instances
+- zfs set atime=off instances
+- lxc storage create data dir source=/mnt/data
+- lxc network create lxdbr0 dns.mode=none ipv4.address=192.168.0.1/24 ipv4.dhcp=true ipv4.firewall=false ipv4.nat=true
+- lxc profile device add default eth0 nic nictype=bridged parent=lxdbr0 security.mac_filtering=true
+- lxc profile device add default root disk path=/ pool=instances
+
+- apt install curl unzip make --yes
+- curl -sLo /tmp/packer_1.5.1_linux_amd64.zip https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip
+- unzip /tmp/packer_1.5.1_linux_amd64.zip -d /usr/bin
+
+- snap install ruby --classic
+- snap install aws-cli --classic
 install:
-- git clone --branch=master "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch=lxd-xenial "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- export PACKER_TEMPLATES_BRANCH="master"
-- export TRAVIS_COOKBOOKS_BRANCH="dam-freebsd-ruby"
-- "./packer-templates/bin/packer-build-script ci-freebsd-12"
-addons:
-  artifacts:
-    paths:
-    - image-metadata-$(cat .packer-build-image-name).tar.bz2
-    target_paths:
-    - travis-ci/packer-templates/ci-freebsd-12/$BUILDER
-notifications:
-  email: false
-env:
-  matrix:
-  - BUILDER=googlecompute
+- export PACKER_TEMPLATES_BRANCH="lxd-xenial"
+- export TRAVIS_COOKBOOKS_BRANCH="master"
+- "pushd packer-templates && make ci-sardonyx && popd"
+# addons:
+#   artifacts:
+#     paths:
+#     - image-metadata-$(cat .packer-build-image-name).tar.bz2
+#     target_paths:
+#     - travis-ci/packer-templates/ci-freebsd-12/$BUILDER
+# notifications:
+#   email: false
+# env:
+#   matrix:
+#   - BUILDER=googlecompute
