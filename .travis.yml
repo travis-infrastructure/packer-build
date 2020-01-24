@@ -6,6 +6,7 @@ before_install:
 ## Install snapd
 - sudo apt install snapd --yes
 - export PATH=/snap/bin/:$PATH
+- echo "export PATH=/snap/bin/:${PATH}" >> ~/.bashrc
 
 ## Install and setup ZFS
 - sudo apt install zfsutils-linux --yes
