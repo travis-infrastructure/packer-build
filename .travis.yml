@@ -39,7 +39,7 @@ script:
 - export PACKER_TEMPLATES_BRANCH="lxd-xenial"
 - export TRAVIS_COOKBOOKS_BRANCH="master"
 - export ARTIFACTS_BUCKET="travis-lxc-images"
-- sudo -E su -l $USER -c 'pushd packer-templates && make ci-sardonyx && popd'
+- sudo su -m -l $USER -c 'pushd packer-templates && make ci-sardonyx && popd'
 addons:
   artifacts:
     paths:
