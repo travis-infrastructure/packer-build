@@ -37,6 +37,8 @@ script:
 - export TRAVIS_COOKBOOKS_BRANCH="master"
 - export ARTIFACTS_BUCKET="travis-lxc-images"
 - export PACKER_VERSION="1.5.1"
+- sudo su -m -l $USER -c 'whereis packer'
+- sudo su -m -l $USER -c 'packer --version'
 - sudo su -m -l $USER -c 'pushd packer-templates && make ci-sardonyx && popd'
 addons:
   artifacts:
