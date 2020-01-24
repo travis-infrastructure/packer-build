@@ -25,15 +25,12 @@ before_install:
 - sudo lxc profile device add default eth0 nic nictype=bridged parent=lxdbr0 security.mac_filtering=true
 - sudo lxc profile device add default root disk path=/ pool=instances
 
-- sudo apt install curl unzip make --yes
-- curl -sLo /tmp/packer_1.5.1_linux_amd64.zip https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip
-- sudo unzip /tmp/packer_1.5.1_linux_amd64.zip -d /usr/bin
-
 - sudo snap install aws-cli --classic
 - sudo usermod -aG lxd travis
 install:
 - git clone --branch=lxd-xenial "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
+- pushd packer-templates && curl -sLo tmp/packer.zip https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip ; popd
 script:
 - export BUILDER="lxd"
 - export PACKER_TEMPLATES_BRANCH="lxd-xenial"
