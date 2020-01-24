@@ -38,8 +38,8 @@ script:
 - export PACKER_TEMPLATES_BRANCH="lxd-xenial"
 - export TRAVIS_COOKBOOKS_BRANCH="master"
 - export ARTIFACTS_BUCKET="travis-lxc-images"
-- bash -l "lxc ls"
-- bash -l "pushd packer-templates && make ci-sardonyx && popd"
+- bash -l -c "lxc ls"
+- bash -l -c "pushd packer-templates && make ci-sardonyx && popd"
 addons:
   artifacts:
     paths:
