@@ -28,10 +28,7 @@ before_install:
 - curl -sLo /tmp/packer_1.5.1_linux_amd64.zip https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip
 - sudo unzip /tmp/packer_1.5.1_linux_amd64.zip -d /usr/bin
 
-- sudo snap install ruby --classic
 - sudo snap install aws-cli --classic
-- mkdir -p ~/.config/lxc
-- sudo cp /etc/lxc/default.conf ~/.config/lxc/default.conf
 install:
 - git clone --branch=lxd-xenial "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
@@ -39,15 +36,11 @@ install:
 script:
 - export PACKER_TEMPLATES_BRANCH="lxd-xenial"
 - export TRAVIS_COOKBOOKS_BRANCH="master"
+- export ARTIFACTS_BUCKET="travis-lxc-images"
 - "pushd packer-templates && make ci-sardonyx && popd"
-# addons:
-#   artifacts:
-#     paths:
-#     - image-metadata-$(cat .packer-build-image-name).tar.bz2
-#     target_paths:
-#     - travis-ci/packer-templates/ci-freebsd-12/$BUILDER
-# notifications:
-#   email: false
-# env:
-#   matrix:
-#   - BUILDER=googlecompute
+addons:
+  artifacts:
+    paths:
+    - $(cat .packer-build-image-name)
+    target_paths:
+    - amd64/
