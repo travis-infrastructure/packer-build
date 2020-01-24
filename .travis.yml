@@ -35,10 +35,11 @@ install:
 - git clone --branch=lxd-xenial "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 script:
+- export BUILDER="lxd"
 - export PACKER_TEMPLATES_BRANCH="lxd-xenial"
 - export TRAVIS_COOKBOOKS_BRANCH="master"
 - export ARTIFACTS_BUCKET="travis-lxc-images"
-- sudo -E su $USER -c 'lxc ls'
+- sudo -E su $USER -c '/snap/bin/lxc ls'
 - sudo -E su $USER -c 'pushd packer-templates && make ci-sardonyx && popd'
 addons:
   artifacts:
