@@ -1,7 +1,7 @@
 
 dist: bionic
 before_install:
-- apt update -qq
+- sudo apt update -qq
 
 ## Install snapd
 - sudo apt install snapd --yes
@@ -30,6 +30,8 @@ before_install:
 
 - sudo snap install ruby --classic
 - sudo snap install aws-cli --classic
+- mkdir -p ~/.config/lxc
+- sudo cp /etc/lxc/default.conf ~/.config/lxc/default.conf
 install:
 - git clone --branch=lxd-xenial "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
