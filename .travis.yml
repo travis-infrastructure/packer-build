@@ -46,7 +46,7 @@ script:
 - sudo su -m -l $USER -c "pushd packer-templates && make ci-${IMAGE} && popd"
 addons:
   artifacts:
-    max_size: 5048576000
+    max_size: "5048576000"
     paths:
     - /home/travis/$(cat /tmp/packer-build-image-name).tar.gz
     target_paths:
