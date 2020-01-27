@@ -47,6 +47,6 @@ script:
 addons:
   artifacts:
     paths:
-    - $(cat /tmp/packer-build-image-name).tar.gz
+    - /home/travis/$(cat /tmp/packer-build-image-name).tar.gz
     target_paths:
     - amd64/
