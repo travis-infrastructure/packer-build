@@ -39,6 +39,8 @@ install:
 - pushd packer-templates && git checkout -qf @ ; popd
 script:
 - export BUILDER="lxd"
+- export AWS_ACCESS_KEY_ID=$LXC_AWS_ACCESS_KEY_ID
+- export AWS_SECRET_ACCESS_KEY=$LXC_AWS_SECRET_ACCESS_KEY
 - export PACKER_TEMPLATES_BRANCH="lxd-xenial"
 - export TRAVIS_COOKBOOKS_BRANCH="master"
 - export ARTIFACTS_BUCKET="travis-lxc-images"
