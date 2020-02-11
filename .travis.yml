@@ -5,7 +5,7 @@ group: edge
 sudo: true
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="ubuntu-1910"
+  - PACKER_TEMPLATES_BRANCH="ubuntu-2004"
   - TRAVIS_COOKBOOKS_BRANCH="master"
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
@@ -20,13 +20,13 @@ install:
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- "./packer-templates/bin/packer-build-script ci-ubuntu-1910-minimal"
+- "./packer-templates/bin/packer-build-script ci-ubuntu-2004-minimal"
 addons:
   artifacts:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/ci-ubuntu-1910/$BUILDER
+    - travis-ci/packer-templates/ci-ubuntu-2004/$BUILDER
 notifications:
   email: false
 env:
