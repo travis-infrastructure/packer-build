@@ -46,4 +46,4 @@ script:
 - export ARTIFACTS_BUCKET="travis-lxc-images"
 - export PACKER_VERSION="1.5.1"
 - export TRAVIS_UID="1000"
-- sudo su -m -l $USER -c "pushd packer-templates && make ci-${IMAGE} && popd"
+- sudo su -m -l $USER -c "echo ${TRAVIS_UID} && pushd packer-templates && make ci-${IMAGE} && popd"
