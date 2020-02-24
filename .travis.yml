@@ -3,11 +3,6 @@ language: minimal
 dist: bionic
 group: edge
 sudo: true
-env:
-  global:
-  - PACKER_TEMPLATES_BRANCH="master"
-  - TRAVIS_COOKBOOKS_BRANCH="master"
-  - TRAVIS_COOKBOOKS_EDGE_BRANCH="master"
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   install apt-transport-https gnupg-agent software-properties-common ; curl -fsSL
@@ -17,7 +12,10 @@ before_install:
   ; sudo apt-get install -o Dpkg::Options::="--force-confnew" -yqq docker-ce docker-ce-cli
   containerd.io lvm2 xfsprogs ; sudo service docker restart ; fi
 install:
-- git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
+- export PACKER_TEMPLATES_BRANCH="master"
+- export TRAVIS_COOKBOOKS_BRANCH="master"
+- export TRAVIS_COOKBOOKS_EDGE_BRANCH="master"
+- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
