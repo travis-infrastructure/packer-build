@@ -2,7 +2,7 @@
 dist: bionic
 env:
   global:
-  - IMAGE=sardonyx    
+  - IMAGE=sardonyx    # this is default value; in order to build different version, one must manually substitute this value with respective name from https://github.com/travis-ci/packer-templates/
 before_install:
 - sudo apt update -qq
 
