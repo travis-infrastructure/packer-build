@@ -1,7 +1,7 @@
 ---
 language: __ubuntu_2004__
 dist: focal
-group: edge
+group: dev
 sudo: true
 env:
   global:
@@ -33,3 +33,4 @@ env:
   matrix:
   - BUILDER=googlecompute
   - BUILDER=docker
+  - BUILDER=lxd
