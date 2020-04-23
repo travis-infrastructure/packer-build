@@ -35,7 +35,7 @@ before_install:
 - sudo snap install aws-cli --classic
 - sudo usermod -aG lxd travis
 install:
-- git clone --branch="{PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 script:
 - export BUILDER="lxd"
