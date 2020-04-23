@@ -37,7 +37,7 @@ before_install:
 install:
 # temporary changed to fork linuxmadness
 #- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/linuxmadness/packer-templates.git"
-- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/linuxmadness/packer-templates.git"
+- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 script:
 - export BUILDER="lxd"
