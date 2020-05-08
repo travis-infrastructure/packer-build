@@ -17,7 +17,7 @@ before_install:
 
 ## Install and setup LXD
 - sudo apt remove --purge --yes lxd lxd-client liblxc1 lxcfs
-- sudo snap install lxd --channel=3.18/stable
+- sudo snap install lxd --channel=4.0.1/stable
 - sudo snap set lxd shiftfs.enable=true
 
 - sudo lxc storage create instances zfs volume.zfs.use_refquota=true
@@ -36,15 +36,14 @@ before_install:
 - sudo usermod -aG lxd travis
 install:
 # temporary changed to fork linuxmadness
-- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/linuxmadness/packer-templates.git"
-#- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 script:
 - export BUILDER="lxd"
 - export AWS_ACCESS_KEY_ID=$LXC_AWS_ACCESS_KEY_ID
 - export AWS_SECRET_ACCESS_KEY=$LXC_AWS_SECRET_ACCESS_KEY
 - export PACKER_TEMPLATES_BRANCH="ubuntu-2004"
-- export TRAVIS_COOKBOOKS_BRANCH="master"
+- export TRAVIS_COOKBOOKS_BRANCH="ubuntu-2004"
 - export ARTIFACTS_BUCKET="travis-lxc-images"
 - export PACKER_VERSION="1.5.1"
 - export TRAVIS_UID="1000"
