@@ -17,7 +17,7 @@ before_install:
 
 ## Install and setup LXD
 - sudo apt remove --purge --yes lxd lxd-client liblxc1 lxcfs
-- sudo snap install lxd --channel=4.0/stable
+- sudo snap install --stable lxd
 - sudo snap set lxd shiftfs.enable=true
 
 - sudo lxc storage create instances zfs volume.zfs.use_refquota=true
