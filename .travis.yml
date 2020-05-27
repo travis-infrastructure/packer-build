@@ -9,7 +9,7 @@ env:
   - TRAVIS_COOKBOOKS_BRANCH="master"
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo cat /etc/docker/daemon.json;
-  sudo systemctl stop docker; echo '{\"storage-driver\": \"overlay2\"}' | sudo tee /etc/docker/daemon.json;
+  sudo systemctl stop docker;
   sudo systemctl restart docker ; fi
 install:
 - git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
