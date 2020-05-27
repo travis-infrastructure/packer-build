@@ -10,7 +10,8 @@ env:
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo cat /etc/docker/daemon.json;
   sudo systemctl stop docker;
-  sudo systemctl restart docker ; fi
+  echo {"registry-mirrors": ["https://mirror.gcr.io"], "mtu": 1460, "storage-driver": "overlay2"} | sudo tee /etc/docker/daemon.json;
+  sudo systemctl start docker ; fi
 install:
 - git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
