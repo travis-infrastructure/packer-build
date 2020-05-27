@@ -11,6 +11,8 @@ before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo cat /etc/docker/daemon.json;
   sudo systemctl stop docker;
   sudo cp ${TRAVIS_BUILD_DIR}/daemon.json /etc/docker/daemon.json;
+  sudo cat /etc/docker/daemon.json;
+  sudo ps auxf | grep docker;
   sudo systemctl start docker ; fi
 install:
 - git clone --branch="master" "https://github.com/travis-ci/packer-templates.git"
