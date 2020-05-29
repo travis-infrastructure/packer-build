@@ -1,6 +1,6 @@
 ---
 language: minimal
-dist: trusty
+dist: xenial
 group: edge
 sudo: true
 env:
@@ -30,5 +30,5 @@ notifications:
 env:
   matrix:
   - BUILDER=googlecompute
-  - BUILDER=docker
-  - BUILDER=openstack
+    #- BUILDER=docker
+    #- BUILDER=openstack
