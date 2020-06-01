@@ -6,7 +6,7 @@ sudo: true
 env:
   global:
   - PACKER_TEMPLATES_BRANCH="cs-couch"
-  - TRAVIS_COOKBOOKS_BRANCH="cs-couchdb"
+  - TRAVIS_COOKBOOKS_BRANCH="master"
   jobs:
   - BUILDER=googlecompute
     #- BUILDER=docker
