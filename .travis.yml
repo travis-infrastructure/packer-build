@@ -1,12 +1,15 @@
 ---
 language: minimal
-dist: trusty
+dist: xenial
 group: edge
-sudo: true
 env:
   global:
   - PACKER_TEMPLATES_BRANCH="master"
   - TRAVIS_COOKBOOKS_BRANCH="master"
+  jobs:
+  - BUILDER=googlecompute
+  #- BUILDER=docker
+  #- BUILDER=openstack
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
@@ -27,8 +30,3 @@ addons:
     - travis-ci/packer-templates/ci-opal/$BUILDER
 notifications:
   email: false
-env:
-  matrix:
-  - BUILDER=googlecompute
-  - BUILDER=docker
-  - BUILDER=openstack
