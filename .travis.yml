@@ -9,8 +9,8 @@ env:
   - TRAVIS_COOKBOOKS_BRANCH="master"
   jobs:
   - BUILDER=googlecompute
-    #- BUILDER=docker
-    #- BUILDER=openstack
+  - BUILDER=docker
+  - BUILDER=openstack
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
@@ -23,8 +23,6 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - "./packer-templates/bin/packer-build-script ci-sardonyx"
-- __dots() { while true ; do echo -en . ; sleep 10 ; done } ; __dots &
-- sleep 6000
 addons:
   artifacts:
     paths:
