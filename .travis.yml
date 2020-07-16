@@ -32,5 +32,4 @@ notifications:
   email: false
 env:
   matrix:
-  - BUILDER=googlecompute
-  - BUILDER=docker
+  - BUILDER=amazon-ebs
