@@ -15,7 +15,7 @@ before_install:
   "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
   ; sudo apt-get install -o Dpkg::Options::="--force-confnew" -yqq docker-ce docker-ce-cli
   containerd.io lvm2 xfsprogs ; sudo service docker restart ; fi
-- if [[ "${BUILDER}" = "lxd" ]] ; echo "test-lxd" ; fi
+- if [[ "${BUILDER}" = "lxd" ]] ; then echo "test-lxd" ; fi
 install:
 - PACKER_TEMPLATES_BRANCH=${PACKER_TEMPLATES_BRANCH:-ubuntu-2004}
 - git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/pawelgrzeda/packer-templates.git"
