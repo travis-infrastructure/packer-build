@@ -6,7 +6,7 @@ sudo: true
 env:
   global:
   - PACKER_TEMPLATES_BRANCH="master"
-  - TRAVIS_COOKBOOKS_BRANCH="master"
+  - TRAVIS_COOKBOOKS_BRANCH="DamianSzymanski-patch-1"
   jobs:
   - BUILDER=googlecompute
   - BUILDER=docker
