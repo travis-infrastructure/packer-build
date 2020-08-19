@@ -26,7 +26,7 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - if [[ "${BUILDER}" = "qemu" ]] ; then cp ./user-data.img ./packer-templates/ ; fi
-- sudo su -m -l $USER -c "./packer-templates/bin/packer-build-script ci-ubuntu-1804"
+- sudo su -m $USER -c "./packer-templates/bin/packer-build-script ci-ubuntu-1804"
 addons:
   artifacts:
     paths:
