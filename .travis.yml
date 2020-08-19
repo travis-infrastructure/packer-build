@@ -20,6 +20,7 @@ install:
 - export PACKER_TEMPLATES_BRANCH="cs-kvm"
 - export TRAVIS_COOKBOOKS_BRANCH="master"
 - export TRAVIS_COOKBOOKS_EDGE_BRANCH="master"
+- export PACKER_VERSION="1.6.1"
 - git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
