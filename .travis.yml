@@ -26,10 +26,7 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - if [[ "${BUILDER}" = "qemu" ]] ; then cp ./user-data.img ./packer-templates/ ; fi
-- id
-- sudo mv /etc/gshadow /etc/gshadow.save ; newgrp kvm
-- id
-#- sudo su -m $USER -c "export PACKER_VERSION="1.6.1" ; ./packer-templates/bin/packer-build-install && ./packer-templates/bin/packer-build-script ci-ubuntu-1804"
+- sudo su -m $USER -c "export PATH=/home/travis/bin:$PATH && ./packer-templates/bin/packer-build-script ci-ubuntu-1804"
 addons:
   artifacts:
     paths:
