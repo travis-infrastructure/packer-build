@@ -14,8 +14,7 @@ before_install:
 - if [[ "${BUILDER}" = "qemu" ]] ; then sudo apt-get update -yqq ; sudo apt-get install qemu-kvm 
   libvirt-daemon-system qemu-utils libvirt-clients bridge-utils cpu-checker unzip -y ; sudo adduser travis libvirt ; 
   sudo adduser travis kvm ; sudo usermod -aG kvm $(whoami) ; sudo usermod -aG libvirt $(whoami) ; virsh list ;
-  curl -s https://releases.hashicorp.com/packer/1.6.1/packer_1.6.1_linux_amd64.zip -o /tmp/packer_1.6.1_linux_amd64.zip ;
-  unzip /tmp/packer_1.6.1_linux_amd64.zip ; sudo mv ./packer /usr/bin/ ; fi
+  export PACKER_VERSION=1.6.1 ; fi
 
 install:
 - export PACKER_TEMPLATES_BRANCH="cs-kvm"
