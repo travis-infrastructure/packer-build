@@ -27,7 +27,7 @@ install:
 script:
 - if [[ "${BUILDER}" = "qemu" ]] ; then cp ./user-data.img ./packer-templates/ ; fi
 - id
-- newgrp kvm
+- sudo mv /etc/gshadow /etc/gshadow.save ; newgrp kvm
 - id
 #- sudo su -m $USER -c "export PACKER_VERSION="1.6.1" ; ./packer-templates/bin/packer-build-install && ./packer-templates/bin/packer-build-script ci-ubuntu-1804"
 addons:
