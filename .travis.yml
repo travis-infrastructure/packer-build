@@ -12,8 +12,8 @@ before_install:
   ; sudo apt-get install -o Dpkg::Options::="--force-confnew" -yqq docker-ce docker-ce-cli
   containerd.io lvm2 xfsprogs ; sudo service docker restart ; fi
 - if [[ "${BUILDER}" = "qemu" ]] ; then sudo apt-get update -yqq ; sudo apt-get install qemu-kvm 
-  libvirt-daemon-system libvirt-bin qemu-utils ubuntu-vm-builder libvirt-clients bridge-utils cpu-checker ; sudo adduser travis libvirt ; 
-  sudo adduser travis kvm ; sudo usermod -aG kvm $(whoami) ; sudo usermod -aG libvirt $(whoami) ; virsh list ; fi
+  libvirt-daemon-system libvirt-bin qemu-utils ubuntu-vm-builder libvirt-clients bridge-utils cpu-checker ; sudo usermod -aG kvm $(whoami) ; 
+  sudo usermod -aG libvirt $(whoami) ; virsh list ; sudo snap install aws-cli --classic ; fi
 
 install:
 - export PACKER_TEMPLATES_BRANCH="cs-kvm"
