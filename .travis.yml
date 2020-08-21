@@ -1,6 +1,6 @@
 ---
 language: minimal
-dist: bionic
+dist: focal
 group: edge
 sudo: true
 before_install:
@@ -12,18 +12,21 @@ before_install:
   ; sudo apt-get install -o Dpkg::Options::="--force-confnew" -yqq docker-ce docker-ce-cli
   containerd.io lvm2 xfsprogs ; sudo service docker restart ; fi
 - if [[ "${BUILDER}" = "qemu" ]] ; then sudo apt-get update -yqq ; sudo apt-get install qemu-kvm 
-  libvirt-daemon-system libvirt-bin qemu-utils ubuntu-vm-builder libvirt-clients bridge-utils cpu-checker ; sudo usermod -aG kvm $(whoami) ; 
-  sudo usermod -aG libvirt $(whoami) ; virsh list ; sudo snap install aws-cli --classic ; fi
+  libvirt-daemon-system qemu-utils libvirt-clients bridge-utils cpu-checker unzip cloud-image-utils 
+  libvirt-clients -y ; sudo usermod -aG kvm $(whoami) ; sudo usermod -aG libvirt $(whoami) ; virsh list ; cloud-localds user-data.img user-data ; 
+  sudo snap install aws-cli --classic ; fi
 
 install:
 - export PACKER_TEMPLATES_BRANCH="cs-kvm"
 - export TRAVIS_COOKBOOKS_BRANCH="master"
 - export TRAVIS_COOKBOOKS_EDGE_BRANCH="master"
+- if [[ "${BUILDER}" = "qemu" ]] ; then export PACKER_VERSION="1.6.1" ; fi
 - git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- "./packer-templates/bin/packer-build-script ci-ubuntu-1804"
+- if [[ "${BUILDER}" = "qemu" ]] ; then cp ./user-data.img ./packer-templates/ ; fi
+- sudo su -m $USER -c "export PATH=/home/travis/bin:$PATH && ./packer-templates/bin/packer-build-script ci-ubuntu-1804"
 addons:
   artifacts:
     paths:
