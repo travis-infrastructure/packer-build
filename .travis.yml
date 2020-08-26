@@ -18,7 +18,7 @@ before_install:
 
 install:
 - export PACKER_TEMPLATES_BRANCH="cs-kvm"
-- export TRAVIS_COOKBOOKS_BRANCH="master"
+- export TRAVIS_COOKBOOKS_BRANCH="cs-qemu"
 - export TRAVIS_COOKBOOKS_EDGE_BRANCH="master"
 - if [[ "${BUILDER}" = "qemu" ]] ; then export PACKER_VERSION="1.6.1" ; fi
 - git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
