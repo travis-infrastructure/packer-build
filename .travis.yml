@@ -17,7 +17,7 @@ before_install:
   sudo snap install aws-cli --classic ; fi
 
 install:
-- export PACKER_TEMPLATES_BRANCH="cs-kvm"
+- export PACKER_TEMPLATES_BRANCH="cs-ubuntu-2004-qemu"
 - export TRAVIS_COOKBOOKS_BRANCH="cs-qemu"
 - export TRAVIS_COOKBOOKS_EDGE_BRANCH="master"
 - if [[ "${BUILDER}" = "qemu" ]] ; then export PACKER_VERSION="1.6.1" ; fi
@@ -26,13 +26,13 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - if [[ "${BUILDER}" = "qemu" ]] ; then cp ./user-data.img ./packer-templates/ ; fi
-- sudo su -m $USER -c "export PATH=/home/travis/bin:$PATH && ./packer-templates/bin/packer-build-script ci-stevonnie"
+- sudo su -m $USER -c "export PATH=/home/travis/bin:$PATH && ./packer-templates/bin/packer-build-script ci-ubuntu-2004"
 addons:
   artifacts:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/ci-stevonnie/$BUILDER
+    - travis-ci/packer-templates/ci-ubuntu-2004/$BUILDER
 notifications:
   email: false
 env:
