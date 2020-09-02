@@ -26,13 +26,13 @@ install:
 - "./packer-templates/bin/packer-build-install"
 script:
 - if [[ "${BUILDER}" = "qemu" ]] ; then cp ./user-data.img ./packer-templates/ ; fi
-- sudo su -m $USER -c "export PATH=/home/travis/bin:$PATH && ./packer-templates/bin/packer-build-script ci-sardonyx"
+- sudo su -m $USER -c "export PATH=/home/travis/bin:$PATH && ./packer-templates/bin/packer-build-script ci-stevonnie"
 addons:
   artifacts:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/ci-sardonyx/$BUILDER
+    - travis-ci/packer-templates/ci-stevonnie/$BUILDER
 notifications:
   email: false
 env:
