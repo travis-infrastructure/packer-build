@@ -1,6 +1,6 @@
 ---
 language: minimal
-dist: xenial
+dist: focal
 group: edge
 sudo: true
 before_install:
