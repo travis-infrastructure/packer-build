@@ -2,7 +2,5 @@
 password: passw0rd
 chpasswd: { expire: False }
 ssh_pwauth: True
-
-bootcmd:
-  - echo 127.0.0.1 ubuntu >> /etc/hosts
-  - echo 127.0.1.1 ubuntu >> /etc/hosts
+hostname: ubuntu
+manage_etc_hosts: true
