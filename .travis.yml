@@ -33,7 +33,7 @@ before_install:
 - curl -sLo /tmp/packer_1.5.1_linux_amd64.zip https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip
 - sudo unzip -o /tmp/packer_1.5.1_linux_amd64.zip -d /usr/local/bin/
 
-- sudo snap install aws-cli --classic
+- sudo pip install aws-cli
 - sudo usermod -aG lxd travis
 install:
 - git clone --branch="lxd-templates" "https://github.com/travis-ci/packer-templates.git"
