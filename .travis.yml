@@ -1,5 +1,6 @@
 
 dist: bionic
+os: linux-ppc64le
 env:
   global:
   - IMAGE=sardonyx    # this is default value; in order to build different version, one must manually substitute this value with respective name from https://github.com/travis-ci/packer-templates/
@@ -35,16 +36,15 @@ before_install:
 - sudo snap install aws-cli --classic
 - sudo usermod -aG lxd travis
 install:
-# temporary changed to fork linuxmadness
-- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="lxd-templates" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 script:
 - export BUILDER="lxd"
 - export AWS_ACCESS_KEY_ID=$LXC_AWS_ACCESS_KEY_ID
 - export AWS_SECRET_ACCESS_KEY=$LXC_AWS_SECRET_ACCESS_KEY
-- export PACKER_TEMPLATES_BRANCH="ubuntu-2004"
-- export TRAVIS_COOKBOOKS_BRANCH="ubuntu-2004"
+  #- export PACKER_TEMPLATES_BRANCH="ubuntu-2004"
+  #- export TRAVIS_COOKBOOKS_BRANCH="ubuntu-2004"
 - export ARTIFACTS_BUCKET="travis-lxc-images"
 - export PACKER_VERSION="1.5.1"
 - export TRAVIS_UID="1000"
-- sudo su -m -l $USER -c "echo ${TRAVIS_UID} && pushd packer-templates && make ci-${IMAGE} && popd"
+- sudo su -m -l $USER -c "echo ${TRAVIS_UID} && pushd packer-templatesi/lxd && packer build --debug <(bin/yml2json < ubuntu-20.04-full.yml) && popd"
