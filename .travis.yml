@@ -48,6 +48,7 @@ before_script:
   '>> ~/.ssh/config
 - eval $BUILDER_KEY
 - eval $BUILDER_KEY1
+- ssh-add - <<< "${BUILDER_KEY_PPC}"
 
 script:
 - make $TEMPLATE
