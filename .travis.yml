@@ -47,7 +47,8 @@ before_script:
     LogLevel ERROR
   '>> ~/.ssh/config
 - eval $BUILDER_KEY
-- if [ $ARCH = "ppc64le" ]; then echo $BUILDER_KEY_PPC | base64 --decode > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa && export BUILDER_USER=$BUILDER_USER_PPC; fi
+# - if [ $ARCH = "ppc64le" ]; then echo $BUILDER_KEY_PPC | base64 --decode > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa && export BUILDER_USER=$BUILDER_USER_PPC; fi
+- if [[ $ARCH == "ppc64le" ]]; then echo $BUILDER_KEY_PPC | base64 --decode > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa && export BUILDER_USER=$BUILDER_USER_PPC; fi
 
 script:
 - make $TEMPLATE
