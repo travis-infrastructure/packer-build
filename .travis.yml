@@ -17,7 +17,7 @@ before_install:
   containerd.io lvm2 xfsprogs ; sudo service docker restart ; fi
 install:
 - PACKER_TEMPLATES_BRANCH=${PACKER_TEMPLATES_BRANCH:-ubuntu-2004}
-- git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch="cs-ubuntu-2004-fixdb" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
