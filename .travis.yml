@@ -3,7 +3,7 @@ language: minimal
 dist: xenial
 
 install:
-- git clone --branch=cs-lxd-templates "https://github.com/Siddhesh-Ghadi/packer-templates.git"
+- git clone --branch=lxd-templates-fixjdk "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates
 
 env:
