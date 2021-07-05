@@ -4,7 +4,7 @@ dist: xenial
 group: edge
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="docker-update-xenial"
+  - PACKER_TEMPLATES_BRANCH="master"
   - TRAVIS_COOKBOOKS_BRANCH="master"
   jobs:
 #   - BUILDER=googlecompute
