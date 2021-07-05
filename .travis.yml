@@ -5,7 +5,7 @@ group: edge
 sudo: true
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="master"
+  - PACKER_TEMPLATES_BRANCH=""docker-update-xenial""
   - TRAVIS_COOKBOOKS_BRANCH="master"
   jobs:
   - BUILDER=googlecompute
