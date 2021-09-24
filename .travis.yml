@@ -12,7 +12,7 @@ before_install:
   ; sudo apt-get install -o Dpkg::Options::="--force-confnew" -yqq docker-ce docker-ce-cli
   containerd.io lvm2 xfsprogs ; sudo service docker restart ; fi
 install:
-- export PACKER_TEMPLATES_BRANCH="bionic_gems_update"
+- export PACKER_TEMPLATES_BRANCH="master"
 - export TRAVIS_COOKBOOKS_BRANCH="couchdb-fix"
 # - export TRAVIS_COOKBOOKS_EDGE_BRANCH="master"
 - git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
