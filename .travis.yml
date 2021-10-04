@@ -7,7 +7,7 @@ env:
   - PACKER_TEMPLATES_BRANCH="master"
   - TRAVIS_COOKBOOKS_BRANCH="master"
   jobs:
-#   - BUILDER=googlecompute
+  - BUILDER=googlecompute
   - BUILDER=docker
   #- BUILDER=openstack
 install:
