@@ -10,10 +10,6 @@ env:
   - BUILDER=googlecompute
   - BUILDER=docker
   #- BUILDER=openstack
-  
-befote_install:
- - sudo apt update
- - sudo apt upgrade
 
 install:
 - git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
