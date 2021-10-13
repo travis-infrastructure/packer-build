@@ -6,7 +6,7 @@ sudo: true
 env:
   global:
   - PACKER_TEMPLATES_BRANCH="ubuntu-2004"
-  - TRAVIS_COOKBOOKS_BRANCH="master"
+  - TRAVIS_COOKBOOKS_BRANCH="ubuntu-2004"
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   install apt-transport-https gnupg-agent software-properties-common ; curl -fsSL
