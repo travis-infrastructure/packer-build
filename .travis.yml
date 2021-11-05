@@ -3,10 +3,6 @@ language: minimal
 dist: bionic
 group: edge
 sudo: true
-env:
-  global:
-  - PACKER_TEMPLATES_BRANCH="ubuntu-2004"
-  - TRAVIS_COOKBOOKS_BRANCH="ubuntu-2004"
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
   install apt-transport-https gnupg-agent software-properties-common ; curl -fsSL
@@ -30,6 +26,9 @@ addons:
 notifications:
   email: false
 env:
+  global:
+  - PACKER_TEMPLATES_BRANCH="ubuntu-2004"
+  - TRAVIS_COOKBOOKS_BRANCH="ubuntu-2004"
   matrix:
-  - BUILDER=googlecompute
   - BUILDER=docker
+  - BUILDER=googlecompute
