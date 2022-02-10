@@ -3,10 +3,6 @@ language: minimal
 dist: bionic
 group: dev
 sudo: true
-env:
-  global:
-  - PACKER_TEMPLATES_BRANCH="master"
-  - TRAVIS_COOKBOOKS_BRANCH="master"
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo cat /etc/docker/daemon.json;
   sudo systemctl stop docker;
@@ -29,6 +25,9 @@ addons:
 notifications:
   email: false
 env:
+  global:
+  - PACKER_TEMPLATES_BRANCH="master"
+  - TRAVIS_COOKBOOKS_BRANCH="master"
   matrix:
-  - BUILDER=googlecompute
   - BUILDER=docker
+  - BUILDER=googlecompute
