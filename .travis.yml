@@ -27,7 +27,7 @@ notifications:
   email: false
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="ci-rhel-8-dev"
+  - PACKER_TEMPLATES_BRANCH="ga-rheltest"
   - TRAVIS_COOKBOOKS_BRANCH="ci-rhel-8-dev"
   matrix:
   - BUILDER=docker
