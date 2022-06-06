@@ -27,8 +27,8 @@ notifications:
   email: false
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="master"
-  - TRAVIS_COOKBOOKS_BRANCH="master"
+  - PACKER_TEMPLATES_BRANCH="ubuntu-2204"
+  - TRAVIS_COOKBOOKS_BRANCH="prd-ubuntu2204"
   matrix:
   - BUILDER=docker
   - BUILDER=googlecompute
