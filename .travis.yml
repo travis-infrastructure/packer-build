@@ -43,7 +43,6 @@ script:
 - export BUILDER_USER=$BUILDER_USER_ARM64
 - echo $BUILDER_KEY_ARM64 | base64 --decode > ~/.ssh/id_rsa
 - chmod 600 ~/.ssh/id_rsa
-- scp ~/vars "${BUILDER_USER}@${BUILDER_HOST}":~/
 - export AWS_SECRET_ACCESS_KEY=$LXC_AWS_SECRET_ACCESS_KEY
 - export PACKER_TEMPLATES_BRANCH="ubuntu-2204"
 - export TRAVIS_COOKBOOKS_BRANCH="prd-ubuntu2204"
