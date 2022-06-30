@@ -31,4 +31,4 @@ env:
   - TRAVIS_COOKBOOKS_BRANCH="master"
   matrix:
   - BUILDER=docker
-    #- BUILDER=googlecompute
+  - BUILDER=googlecompute
