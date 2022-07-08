@@ -23,8 +23,8 @@ env:
     # - TEMPLATE="ubuntu-16.04-generic" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
     # - TEMPLATE="ubuntu-18.04-generic" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
     # - TEMPLATE="ubuntu-20.04-generic" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
-    # - TEMPLATE="ubuntu-16.04-minimal" ARCH="ppc64le" BUILDER_HOST=$BUILDER_ppc64le
-    - TEMPLATE="ubuntu-18.04-minimal" ARCH="ppc64le" BUILDER_HOST=$BUILDER_ppc64le
+     - TEMPLATE="ubuntu-16.04-minimal" ARCH="ppc64le" BUILDER_HOST=$BUILDER_ppc64le
+    #- TEMPLATE="ubuntu-18.04-minimal" ARCH="ppc64le" BUILDER_HOST=$BUILDER_ppc64le
     #- TEMPLATE="ubuntu-20.04-minimal" ARCH="ppc64le" BUILDER_HOST=$BUILDER_ppc64le
     # - TEMPLATE="ubuntu-16.04-generic" ARCH="ppc64le" BUILDER_HOST=$BUILDER_ppc64le
     #- TEMPLATE="ubuntu-18.04-generic" ARCH="ppc64le" BUILDER_HOST=$BUILDER_ppc64le
