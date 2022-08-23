@@ -3,7 +3,7 @@ language: minimal
 dist: xenial
 
 install:
-- git clone --branch=kw-lxd_cosign "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch=kw-lxd_cosign2 "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates
 
 env:
