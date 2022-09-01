@@ -2,6 +2,7 @@
 language: minimal
 dist: xenial
 group: edge
+sudo: true
 env:
   global:
   - PACKER_TEMPLATES_BRANCH="update-images"
