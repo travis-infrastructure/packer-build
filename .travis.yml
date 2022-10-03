@@ -1,12 +1,12 @@
 ---
 language: minimal
 dist: xenial
-group: edge
+group: dev
 sudo: true
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="update-images"
-  - TRAVIS_COOKBOOKS_BRANCH="update-images"
+  - PACKER_TEMPLATES_BRANCH="kw-change_ruby"
+  - TRAVIS_COOKBOOKS_BRANCH="master"
   jobs:
   - BUILDER=googlecompute
   - BUILDER=docker
