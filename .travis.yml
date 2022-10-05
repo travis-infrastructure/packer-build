@@ -1,11 +1,11 @@
 ---
 language: minimal
 dist: xenial
-group: dev
+group: edge
 sudo: true
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="kw-change_ruby"
+  - PACKER_TEMPLATES_BRANCH="master"
   - TRAVIS_COOKBOOKS_BRANCH="master"
   jobs:
   - BUILDER=googlecompute
