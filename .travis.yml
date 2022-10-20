@@ -5,8 +5,8 @@ group: edge
 sudo: true
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="master"
-  - TRAVIS_COOKBOOKS_BRANCH="master"
+  - PACKER_TEMPLATES_BRANCH="update-images"
+  - TRAVIS_COOKBOOKS_BRANCH="update-images"
   jobs:
   - BUILDER=googlecompute
   - BUILDER=docker
