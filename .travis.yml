@@ -27,7 +27,7 @@ notifications:
   email: false
 env:
   global:
-  - PACKER_TEMPLATES_BRANCH="cs-r2.6.9"
+  - PACKER_TEMPLATES_BRANCH=" cs-rvmbin"
   - TRAVIS_COOKBOOKS_BRANCH="cs-rvm"
   matrix:
   - BUILDER=docker
