@@ -16,7 +16,7 @@ install:
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
 script:
-- "./packer-templates/bin/packer-build-script ci-ubuntu-2004"
+- "./packer-templates/bin/packer-build-script ci-ubuntu-2004-gpu"
 addons:
   artifacts:
     paths:
