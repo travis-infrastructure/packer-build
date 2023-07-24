@@ -22,7 +22,7 @@ addons:
     paths:
     - image-metadata-$(cat .packer-build-image-name).tar.bz2
     target_paths:
-    - travis-ci/packer-templates/ci-ubuntu-2004/$BUILDER
+    - travis-ci/packer-templates/ci-ubuntu-2004-gpu/$BUILDER
 notifications:
   email: false
 env:
