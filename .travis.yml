@@ -21,7 +21,7 @@ env:
     # - TEMPLATE="ubuntu-16.04-full" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
     # - TEMPLATE="ubuntu-18.04-full" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
     # - TEMPLATE="ubuntu-20.04-full" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
-     - TEMPLATE="ubuntu-22.04-full" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
+     # - TEMPLATE="ubuntu-22.04-full" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
     # - TEMPLATE="ubuntu-16.04-generic" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
     # - TEMPLATE="ubuntu-18.04-generic" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
     # - TEMPLATE="ubuntu-20.04-generic" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
@@ -49,7 +49,7 @@ env:
     # - TEMPLATE="ubuntu-16.04-full" ARCH="s390x" BUILDER_HOST=$BUILDER_s390x
     # - TEMPLATE="ubuntu-18.04-full" ARCH="s390x" BUILDER_HOST=$BUILDER_s390x
     # - TEMPLATE="ubuntu-20.04-full" ARCH="s390x" BUILDER_HOST=$BUILDER_s390x
-     - TEMPLATE="ubuntu-22.04-full" ARCH="s390x" BUILDER_HOST=$BUILDER_s390x
+     # - TEMPLATE="ubuntu-22.04-full" ARCH="s390x" BUILDER_HOST=$BUILDER_s390x
     # - TEMPLATE="ubuntu-16.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
     # - TEMPLATE="ubuntu-18.04-ruby" ARCH="arm64" BUILDER_HOST=$BUILDER_arm64
 
