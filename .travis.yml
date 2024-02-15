@@ -1,18 +1,9 @@
 ---
 language: minimal
-dist: xenial
-env:
-  global:
-  - PACKER_TEMPLATES_BRANCH="master"
-  - TRAVIS_COOKBOOKS_BRANCH="master"
-before_install:
-- if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get
-  purge -o Dpkg::Options::="--force-confnew" -yqq docker-ce ; sudo apt-get install
-  -o Dpkg::Options::="--force-confnew" -yqq docker-ce lvm2 xfsprogs ; echo 'DOCKER_OPTS="$DOCKER_OPTS
-  --storage-driver devicemapper"' | sudo tee -a /etc/default/docker ; sudo service
-  docker restart ; fi
+dist: focal
+group: edge
+sudo: true
 install:
-- PACKER_TEMPLATES_BRANCH=${PACKER_TEMPLATES_BRANCH:=master}
 - git clone --branch="${PACKER_TEMPLATES_BRANCH}" "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates && git checkout -qf @ ; popd
 - "./packer-templates/bin/packer-build-install"
@@ -27,5 +18,8 @@ addons:
 notifications:
   email: false
 env:
+  global:
+  - PACKER_TEMPLATES_BRANCH="master"
+  - TRAVIS_COOKBOOKS_BRANCH="master"
   matrix:
   - BUILDER=googlecompute
