@@ -30,5 +30,4 @@ env:
   - PACKER_TEMPLATES_BRANCH="ubuntu-2204"
   - TRAVIS_COOKBOOKS_BRANCH="prd-ubuntu2204"
   matrix:
-  - BUILDER=docker
   - BUILDER=googlecompute
