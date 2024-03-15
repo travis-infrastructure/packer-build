@@ -3,7 +3,7 @@ language: minimal
 dist: xenial
 
 install:
-- git clone --branch=kw-lxd "https://github.com/travis-ci/packer-templates.git"
+- git clone --branch=cs-fixpg "https://github.com/travis-ci/packer-templates.git"
 - pushd packer-templates
 
 env:
