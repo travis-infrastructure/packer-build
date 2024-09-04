@@ -1,6 +1,7 @@
 ---
+language: minimal
 dist: focal
-group: dev
+group: edge
 sudo: true
 before_install:
 - if [[ "${BUILDER}" = "docker" ]] ; then sudo apt-get update -yqq ; sudo apt-get upgrade -y ;
